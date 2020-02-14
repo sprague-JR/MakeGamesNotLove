@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        processInput();
+        // get horizontal and vertical inputs and calculate the corresponding speed
+        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveVelocity = moveInput * speed;
     }
 
     private void FixedUpdate()
@@ -28,14 +30,8 @@ public class PlayerController : MonoBehaviour
         movePosition();
     }
 
-    void processInput()
-    {
-        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveVelocity = moveInput * speed;
-        
-    }
 
-    void movePosition()
+    private void movePosition()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
