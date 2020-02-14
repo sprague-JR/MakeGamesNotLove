@@ -7,6 +7,7 @@ namespace EnemyScripts
     public class EnemyController : MonoBehaviour
     {
         public float speed;
+        public PlayerController player;
         
         private Vector2 moveVelocity;
         private Rigidbody2D rb;
@@ -23,7 +24,7 @@ namespace EnemyScripts
 
         private void Update()
         {
-            Vector2 move = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+            Vector2 move = (player.position - rb.position).normalized;
             moveVelocity = move * speed;
         }
     }
