@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10f;
+    public Vector2 position;
 
     private Vector2 moveInput;
     private Vector2 moveVelocity;
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        position = rb.position;
     }
 
     // Update is called once per frame
