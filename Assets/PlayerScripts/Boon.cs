@@ -5,5 +5,6 @@ namespace PlayerScripts
         God god();
         uint damage();
         DamageType damageType();
+        void attack();
     }
 }
