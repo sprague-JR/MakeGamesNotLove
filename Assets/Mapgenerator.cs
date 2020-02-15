@@ -17,10 +17,10 @@ public class Mapgenerator : MonoBehaviour
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
 
-		createmap(new Vector2(0, 10), new Vector2(8, 0));
-		createmap(new Vector2(15, 20), new Vector2(30, 0));
+		//createmap(new Vector2(0, 10), new Vector2(8, 0));
+		//createmap(new Vector2(15, 20), new Vector2(30, 0));
 		//corridoor(new Vector2(15, 7), new Vector2(8, 9));
-		Wallify(20, 25);
+		//Wallify(20, 25);
 
 
 		//createmap(new Vector2(0, 20), new Vector2(8, 15));
@@ -30,7 +30,6 @@ public class Mapgenerator : MonoBehaviour
 
     public void createmap(Vector2 topLeft, Vector2 bottomRight)
     {
-		print("map");
         int leftX = Mathf.RoundToInt(topLeft.x);
         int leftY = Mathf.RoundToInt(topLeft.y);
         int rightX = Mathf.RoundToInt(bottomRight.x);
@@ -481,9 +480,9 @@ public class Mapgenerator : MonoBehaviour
 	}
 	public void Wallify(int endx, int endy)
 	{
-		for (int i= 0; i <= endx;i++)
+		for (int i= -20; i <= endx + 20;i++)
 		{
-			for (int k = 0; k <= endy; k++)
+			for (int k = -20; k <= endy + 20; k++)
 			{
 				if(walkable.HasTile(new Vector3Int(i, k, 0))==false)
 				{

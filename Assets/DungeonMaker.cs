@@ -302,9 +302,6 @@ public class DungeonMaker : MonoBehaviour
 				}
 			}
 		}
-
-		Debug.Log(start.room.gridLoc);
-		Debug.Log(end.room.gridLoc);
 	}
 
 
