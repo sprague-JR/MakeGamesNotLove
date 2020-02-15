@@ -27,7 +27,7 @@ namespace WeaponScripts
 
         public void attack(Vector2 Position, Vector2 Direction)
         {
-
+            Debug.Log("aoe attack");
         }
     }
 }
