@@ -18,9 +18,9 @@ namespace PlayerScripts
             isDead = true; 
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.collider.CompareTag($"Enemy"))
+            if (other.CompareTag($"Enemy"))
             {
                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
                 health -= (int)enemy.dmg();

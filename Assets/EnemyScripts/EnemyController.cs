@@ -32,11 +32,11 @@ namespace EnemyScripts
             rb.MovePosition(pos);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.collider.CompareTag($"Player"))
+            if (other.CompareTag($"Player"))
             {
-                Vector2 dir = other.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
+                Vector2 dir = other.attachedRigidbody.position - new Vector2(transform.position.x, transform.position.y);
                 dir = -dir.normalized;
                 offset = dir*force;
             }
