@@ -20,6 +20,7 @@ namespace PlayerScripts
                 if (health == 0)
                 {
                     Debug.Log("Ya dead ya cunt");
+                    
                 }
             }
         }
