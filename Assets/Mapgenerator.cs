@@ -17,9 +17,9 @@ public class Mapgenerator : MonoBehaviour
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
 
-        createmap(new Vector2(-7, 5), new Vector2(-2, 3));
-        createmap(new Vector2(4, -1), new Vector2(7, -5));
-        coridor(new Vector2(-3, 3), new Vector2(6, -1));
+		//createmap(new Vector2(-7, 5), new Vector2(-2, 3));
+		//createmap(new Vector2(4, -1), new Vector2(7, -5));
+        //coridor(new Vector2(-3, 3), new Vector2(6, -1));
     }
 
 
