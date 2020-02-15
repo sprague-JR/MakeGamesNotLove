@@ -72,12 +72,6 @@ namespace PlayerScripts
 
         private void FixedUpdate()
         {
-            movePosition();
-        }
-
-
-        private void movePosition()
-        {
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         }
     }
