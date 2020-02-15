@@ -12,7 +12,7 @@ public class Mapgenerator : MonoBehaviour
     public TileBase nonwalkableTile;
  
 
-    void Start()
+    void Awake()
     {
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
@@ -35,25 +35,21 @@ public class Mapgenerator : MonoBehaviour
         int leftY = Mathf.RoundToInt(topLeft.y);
         int rightX = Mathf.RoundToInt(bottomRight.x);
         int rightY = Mathf.RoundToInt(bottomRight.y);
-        for (int i = leftX; i < rightX+1; i++) {
-            var TileType = walkableTile;
-            var Tile = walkable;
-        
-            for(int k = leftY; k > rightY-1; k--)
-            {
-                if (i == leftX || i == rightX || k == leftY || k == rightY)
-                {
-                    TileType = nonwalkableTile;
-                    Tile = nonwalkable;
-                }
-                else
-                {
-                    TileType = walkableTile;
-                    Tile = walkable;
-                }
-                Tile.SetTile(new Vector3Int(i, k, 0), TileType);
-            }
-        }
+        for(int x = leftX; x < rightX + 1; x++)
+		{
+			for(int y = rightY; y < leftY + 1; y++)
+			{
+
+				if(x == leftX || y == leftY || x == rightX || y == rightY)
+				{
+					closeTile(new Vector2(x, y));
+				}
+				else
+				{
+					openTile(new Vector2(x, y));
+				}
+			}
+		}
 
         
     }
