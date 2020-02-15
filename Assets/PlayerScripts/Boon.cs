@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    abstract class Boon : MonoBehaviour
+    public abstract class Boon : MonoBehaviour
     {
         public float cooldown;
         public float range;
