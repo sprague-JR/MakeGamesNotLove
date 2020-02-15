@@ -161,11 +161,15 @@ public class DungeonMaker : MonoBehaviour
         {
             for (int iy = 0; iy < y; iy++)
             {
-                if (grid[ix, iy] != null && !keep.Contains(grid[ix, iy]))
+                if (grid[ix, iy] != null && !keep.Contains(grid[ix, iy]) && !rooms.Contains(grid[ix,iy]))
                 {
                     grid[ix, iy].Destroy();
                     grid[ix, iy] = null;
-                }
+                }else if(!rooms.Contains(grid[ix,iy]))
+				{
+					rooms.Add(grid[ix, iy]);
+				}
+
             }
         }
     }
