@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb89932a7c359a4aba6f61e08cb49a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 5
-  y: 5
+  x: 7
+  y: 7
   critical_path_length: 20
   min_rooms: 10
-  max_rooms: 30
+  max_rooms: 10
