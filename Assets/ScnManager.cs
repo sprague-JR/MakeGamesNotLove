@@ -40,6 +40,11 @@ public class ScnManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void NextLevel()
+    {
+
+    }
+
     public void QuitGame()
     {
         Debug.Log("aaaah coooome ooooon");

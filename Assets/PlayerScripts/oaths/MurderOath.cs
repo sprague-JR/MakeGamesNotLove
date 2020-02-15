@@ -4,8 +4,11 @@ namespace PlayerScripts.oaths
 {
     public class MurderOath : MonoBehaviour, Oath
     {
+
         private bool broke;
-        
+
+        public GameObject[] enemies;
+
         public new string name()
         {
             return "Rip and Tear";
