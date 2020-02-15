@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Boon boon;
     private MeleeAttack meleeAt;
+    private BoonManager boonManager;
     [HideInInspector]
     public Rigidbody2D rb;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         meleeAt = GetComponent<MeleeAttack>();
+        boonManager = GetComponent<BoonManager>();
     }
 
     // Update is called once per frame
@@ -28,10 +30,23 @@ public class PlayerController : MonoBehaviour
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * speed;
 
+        
+
         if (Input.GetButtonDown("Fire1"))
         {
-            meleeAt.attack(transform.position, moveInput);
-        
+            boonManager.boon[0].attack(transform.position, moveInput);
+        }
+        else if(Input.GetButtonDown("Fire2"))
+        {
+            boonManager.boon[1].attack(transform.position, moveInput);
+        }
+        else if (Input.GetButtonDown("Fire3"))
+        {
+            boonManager.boon[2].attack(transform.position, moveInput);
+        }
+        else if (Input.GetButtonDown("Fire4"))
+        {
+            boonManager.boon[3].attack(transform.position, moveInput);
         }
     }
 

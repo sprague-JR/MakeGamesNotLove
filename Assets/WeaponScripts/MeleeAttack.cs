@@ -4,27 +4,25 @@ using UnityEngine;
 using PlayerScripts;
 
 
-class MeleeAttack : MonoBehaviour, Boon
+class MeleeAttack : Boon
 {
-    public float cooldown = 0.0f;
-    public float range = 2.0f;
 
-    public God god()
+    override public God god()
     {
         return null;
     }
 
-    public uint damage()
+    override public uint damage()
     {
         return 0;
     }
 
-    public DamageType damageType()
+    override public DamageType damageType()
     {
         return 0;
     }
 
-    public void attack(Vector2 position, Vector2 direction)
+    override public void attack(Vector2 position, Vector2 direction)
     {
         RaycastHit2D hit;
         LayerMask lm = LayerMask.GetMask("Enemy");

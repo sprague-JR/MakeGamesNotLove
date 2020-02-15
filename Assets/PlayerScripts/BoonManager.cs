@@ -5,17 +5,27 @@ namespace PlayerScripts
 {
     class BoonManager: MonoBehaviour
     {
-        Boon[] boon;
+        public Boon[] boon;
 
 
         private void Start()
         {
             GameObject weaponSelector = GameObject.Find("WeaponSelect");
+            boon = new Boon[weaponSelector.transform.childCount];
             for (int i = 0; i < weaponSelector.transform.childCount; i++)
             {
-                Debug.Log(weaponSelector.transform.GetChild(i).GetComponent<Boon>());
                 boon[i] = weaponSelector.transform.GetChild(i).GetComponent<Boon>();
             }
+        }
+
+        public void enableBoon(int index)
+        {
+            //set boon active here
+        }
+
+        public void disableBoon(int index)
+        {
+            //set boon inactive here
         }
     }
 }
