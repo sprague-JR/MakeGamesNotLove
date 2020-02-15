@@ -1,10 +1,15 @@
+using UnityEngine;
+
 namespace PlayerScripts
 {
-    public interface Boon
+    public abstract class Boon : MonoBehaviour
     {
-        God god();
-        uint damage();
-        DamageType damageType();
-        void attack();
+        public float cooldown;
+        public float range;
+
+        public abstract God god();
+        public abstract uint damage();
+        public abstract DamageType damageType();
+        public abstract void attack(Vector2 position, Vector2 direction);
     }
 }
