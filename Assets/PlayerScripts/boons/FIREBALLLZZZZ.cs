@@ -1,4 +1,5 @@
 using System;
+using EnemyScripts;
 using UnityEngine;
 
 namespace PlayerScripts.boons
@@ -9,6 +10,7 @@ namespace PlayerScripts.boons
         private Vector2 start;
         private bool isFlying;
         public float range;
+        public uint dmg;
 
         public void init()
         {
@@ -22,7 +24,7 @@ namespace PlayerScripts.boons
             
             isFlying = false;
             rb.velocity = Vector2.zero;
-            GameObject.Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         public void attack(Vector2 position, Vector2 direction)
@@ -33,12 +35,14 @@ namespace PlayerScripts.boons
             isFlying = true;
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.collider.CompareTag("Enemy"))
-            {
-                
-            }
+             if (other.CompareTag("Enemy"))
+             {
+                 Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                 enemy.takeDmg(dmg);
+                 Destroy(gameObject);
+             }
         }
     }
 }

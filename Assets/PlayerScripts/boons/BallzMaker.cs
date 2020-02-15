@@ -26,6 +26,7 @@ namespace PlayerScripts.boons
             FIREBALLLZZZZ newBall = Instantiate(ball, position, Quaternion.identity);
             newBall.init();
             newBall.range = range;
+            newBall.dmg = damage();
             newBall.attack(position, direction);
         }
     }
