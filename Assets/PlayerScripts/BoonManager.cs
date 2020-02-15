@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    class BoonManager: MonoBehaviour
+    public class BoonManager: MonoBehaviour
     {
         public Boon[] boon;
 
