@@ -8,6 +8,7 @@ namespace PlayerScripts
     public class GodManager: MonoBehaviour
     {
         private God[] gods;
+        private bool notPacifist;
 
         public void init()
         {
@@ -36,12 +37,12 @@ namespace PlayerScripts
                 gods[index].boon().attack(position, direction);
             }
 
+            if (notPacifist) return;
             foreach (var god in gods)
             {
-                if (god is PacifistGod g)
-                {
-                    ((PacifistOath) g.oath()).playerAttack(true);
-                }
+                if (!(god is PacifistGod g)) continue;
+                ((PacifistOath) g.oath()).playerAttack(true);
+                notPacifist = true;
                 break;
             }
         }
