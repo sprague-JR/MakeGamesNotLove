@@ -1,21 +1,21 @@
-﻿using UnityEngine;
+using System;
+using UnityEngine;
 
 namespace PlayerScripts.gods
 {
-    class PacifistGod : MonoBehaviour, God
+    public class PacifistGod : MonoBehaviour, God
     {
-        Boon pacifistBoon;
-        Oath pacifistOath;
+        private Boon pacifistBoon;
+        private Oath pacifistOath;
 
-        void Start()
+        private void Start()
         {
-            //fireyBoon = ;
-            //fireyOath = ;
+            
         }
 
-        public new string name()
+        public string name()
         {
-            return "PacifistGod";
+            return "Anti-Gandhi";
         }
 
         public Boon boon()
