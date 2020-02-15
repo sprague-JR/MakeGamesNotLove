@@ -8,9 +8,9 @@ using UnityEngine;
 public class Room
 {
 	public Vector2Int gridLoc;
-	Vector2Int dimensions;
+	public Vector2Int dimensions;
 
-	Vector2Int offset;
+	public Vector2Int offset;
 	Color color;
 	public GameObject rendered;
 
@@ -28,11 +28,9 @@ public class Room
 
 		rendered = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-		rendered.transform.position = new Vector3((gridLoc.x * grid_size)/* + offset.x + (dimensions.x / 2)*/, 0, (gridLoc.y * grid_size)/*+ offset.y + (dimensions.y / 2)*/);
+		rendered.transform.position = new Vector3((gridLoc.x * grid_size) + offset.x + (dimensions.x / 2), 0, (gridLoc.y * grid_size) + offset.y + (dimensions.y / 2));
 		rendered.transform.localScale = new Vector3(dimensions.x, 2, dimensions.y);
 
-		if (secondary)
-			rendered.GetComponent<Renderer>().material.color = Color.red;
 	}
 }
 

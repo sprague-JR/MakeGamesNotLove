@@ -16,12 +16,13 @@ public class Mapgenerator : MonoBehaviour
     {
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
-        createmap(new Vector2(-10, 4), new Vector2(8, -4));
+        //createmap(new Vector2(-10, 4), new Vector2(8, -4));
     }
 
 
     public void createmap(Vector2 topLeft, Vector2 bottomRight)
     {
+		print("map");
         int leftX = Mathf.RoundToInt(topLeft.x);
         int leftY = Mathf.RoundToInt(topLeft.y);
         int rightX = Mathf.RoundToInt(bottomRight.x);
