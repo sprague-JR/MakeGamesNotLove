@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace PlayerScripts
 {
     public interface Boon
@@ -5,6 +7,6 @@ namespace PlayerScripts
         God god();
         uint damage();
         DamageType damageType();
-        void attack();
+        void attack(Vector2 position, Vector2 direction);
     }
 }

@@ -133,46 +133,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266066, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266066, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266066, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266066, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266156, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.00084427
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266156, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.996437
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266156, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.0008445978
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364687909266156, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.9964359
-      objectReference: {fileID: 0}
     - target: {fileID: 7614364687909266157, guid: b6c562fff52cc454ca6d3bc20a736761,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,16 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364688171486513, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1049871633
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614364688171486513, guid: b6c562fff52cc454ca6d3bc20a736761,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c562fff52cc454ca6d3bc20a736761, type: 3}
