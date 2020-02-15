@@ -40,7 +40,6 @@ namespace EnemyScripts
         {
             if (other.collider.CompareTag($"Player"))
             {
-                Debug.Log("CD");
                 Vector2 dir = other.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
                 dir = -dir.normalized;
                 offset = dir*force;
