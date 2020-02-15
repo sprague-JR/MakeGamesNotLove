@@ -32,23 +32,21 @@ namespace PlayerScripts
             moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             moveVelocity = moveInput * speed;
 
-        
-
             if (Input.GetButtonDown("Fire1"))
             {
-                boonManager.boon[0].attack(transform.position, moveInput);
+                boonManager.attack(0, transform.position, moveInput);
             }
             else if(Input.GetButtonDown("Fire2"))
             {
-                boonManager.boon[1].attack(transform.position, moveInput);
+                boonManager.attack(1, transform.position, moveInput);
             }
             else if (Input.GetButtonDown("Fire3"))
             {
-                boonManager.boon[2].attack(transform.position, moveInput);
+                boonManager.attack(2, transform.position, moveInput);
             }
             else if (Input.GetButtonDown("Fire4"))
             {
-                boonManager.boon[3].attack(transform.position, moveInput);
+                boonManager.attack(3, transform.position, moveInput);
             }
         }
 
@@ -62,8 +60,5 @@ namespace PlayerScripts
         {
             rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         }
-
-    
-
     }
 }
