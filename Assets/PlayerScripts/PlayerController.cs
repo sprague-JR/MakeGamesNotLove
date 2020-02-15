@@ -23,6 +23,11 @@ namespace PlayerScripts
             rb = GetComponent<Rigidbody2D>();
             meleeAt = GetComponent<MeleeAttack>();
             boonManager = GetComponent<BoonManager>();
+            boonManager.init();
+            for (int i = 0; i < 4; i++)
+            {
+                boonManager.enableBoon(i);
+            }
         }
 
         // Update is called once per frame
@@ -34,7 +39,7 @@ namespace PlayerScripts
 
             if (Input.GetButtonDown("Fire1"))
             {
-                boonManager.attack(0, transform.position, moveInput);
+                boonManager.attack(3, transform.position, moveInput);
             }
             else if(Input.GetButtonDown("Fire2"))
             {
@@ -46,7 +51,7 @@ namespace PlayerScripts
             }
             else if (Input.GetButtonDown("Fire4"))
             {
-                boonManager.attack(3, transform.position, moveInput);
+                boonManager.attack(0, transform.position, moveInput);
             }
         }
 
