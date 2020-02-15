@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class BoonManager: MonoBehaviour
+    public class GodManager: MonoBehaviour
     {
         private God[] gods;
         private bool[] enabledGods;
@@ -43,7 +43,6 @@ namespace PlayerScripts
             {
                 if (!(gods[i] is PacifistGod)) continue;
                 enabledGods[i] = false;
-                ((PacifistOath) gods[i].oath()).playerAttack(true);
                 break;
             }
         }
