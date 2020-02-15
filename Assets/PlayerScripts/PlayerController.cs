@@ -19,6 +19,7 @@ namespace PlayerScripts
         private MeleeAttack meleeAt;
         private GodManager godManager;
         private Oath runnyOath;
+        private bool hasMoved;
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -41,10 +42,11 @@ namespace PlayerScripts
             if (moveInput != Vector2.zero)
             {
                 direction = moveInput;
+                hasMoved = true;
             }
             else
             {
-                if (!runnyOath.hasBeenBroken())
+                if (hasMoved && !runnyOath.hasBeenBroken())
                 {
                     runnyOath.forceBreak(true);
                 }
