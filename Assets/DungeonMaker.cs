@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DungeonMaker : MonoBehaviour
 {
-    public int critical_path_length;
+
     List<Vector2Int> empty;
     public int min_rooms, max_rooms;
 	List<DungeonNode> rooms;
@@ -12,6 +12,8 @@ public class DungeonMaker : MonoBehaviour
 
 	DungeonNode start;
 	DungeonNode end;
+
+	public GameObject player;
 
 
 	public Mapgenerator mg;
@@ -29,14 +31,14 @@ public class DungeonMaker : MonoBehaviour
 
 
 			Vector2 tl = new Vector2(
-				(dn.room.gridLoc.x * 10) + dn.room.offset.x,
-				(dn.room.gridLoc.y * 10) + dn.room.offset.y + dn.room.dimensions.y
+				(dn.room.gridLoc.x * 20) + dn.room.offset.x,
+				(dn.room.gridLoc.y * 20) + dn.room.offset.y + dn.room.dimensions.y
 				);
 
 
 			Vector2 br = new Vector2(
-				(dn.room.gridLoc.x * 10) + dn.room.offset.x + dn.room.dimensions.x,
-				(dn.room.gridLoc.y * 10) + dn.room.offset.y
+				(dn.room.gridLoc.x * 20) + dn.room.offset.x + dn.room.dimensions.x,
+				(dn.room.gridLoc.y * 20) + dn.room.offset.y
 				);
 
 			mg.createmap(tl, br);
@@ -63,10 +65,19 @@ public class DungeonMaker : MonoBehaviour
 
 		}
 
+		mg.Wallify(x * 20,y * 20);
 
 
-		mg.Wallify(x * 10,y * 10);
-    }
+		GameObject player_instance = Instantiate(player);
+
+		player_instance.transform.position = new Vector3(
+			start.room.gridLoc.x * 20 + start.room.offset.x + (start.room.dimensions.x/2),
+			start.room.gridLoc.y * 20 + start.room.offset.y + (start.room.dimensions.y/2),
+			0);
+
+		transform.parent = player_instance.transform;
+		transform.localPosition = new Vector3(0, 0, -10);
+	}
 
     void makeRooms()
     {

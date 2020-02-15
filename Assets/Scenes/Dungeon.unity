@@ -218,11 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb89932a7c359a4aba6f61e08cb49a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critical_path_length: 20
-  min_rooms: 8
+  min_rooms: 15
   max_rooms: 15
   x: 5
   y: 5
+  player: {fileID: 7614364687909266064, guid: b6c562fff52cc454ca6d3bc20a736761, type: 3}
   mg: {fileID: 0}
 --- !u!114 &344013226
 MonoBehaviour:
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb0bb0bdcd7dac47ac7f39f7a13e0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkableTile: {fileID: 11400000, guid: d82f6e127d1ede74cba8d63e1ff45b58, type: 2}
+  walkableTile: {fileID: 11400000, guid: 3d139441d6489e74fb86d2c50dbbf02e, type: 2}
   nonwalkableTile: {fileID: 11400000, guid: d5a9e77e8910cfc4cbddd104b1d4d5e9, type: 2}
 --- !u!1 &639655292
 GameObject:
@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 2044986331}
   - component: {fileID: 2044986333}
   - component: {fileID: 2044986332}
+  - component: {fileID: 2044986334}
   m_Layer: 0
   m_Name: Nonwalkable
   m_TagString: Untagged
@@ -517,3 +518,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &2044986334
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044986330}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001

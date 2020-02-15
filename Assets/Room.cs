@@ -14,7 +14,7 @@ public class Room
 	public GameObject rendered;
 
 
-	public Room(int x, int y, int grid_size = 10, int min_length = 5, int max_length = 8, bool secondary = false)
+	public Room(int x, int y, int grid_size = 20, int min_length = 10, int max_length = 15, bool secondary = false)
 	{ 
 
 		gridLoc = new Vector2Int(x, y);
@@ -42,7 +42,7 @@ public class Corridoor
 	{
 		a = new Vector2Int(xa, ya);
 		b = new Vector2Int(xb, yb);
-		Debug.DrawLine(new Vector3((xa * 10) + 5,0,(ya * 10) + 5), new Vector3((xb * 10) + 5, 0, (yb * 10) + 5), Color.green,Mathf.Infinity);
+		Debug.DrawLine(new Vector3((xa * 20) + 5,0,(ya * 20) + 5), new Vector3((xb * 20) + 5, 0, (yb * 20) + 5), Color.green,Mathf.Infinity);
 
 	}
 
@@ -67,10 +67,10 @@ public class Corridoor
 
 	private void a_over_b(Room a, Room b)
 	{
-		int ay = (a.gridLoc.y * 10) + a.offset.y;
+		int ay = (a.gridLoc.y * 20) + a.offset.y;
 		// bottom y value in room
 
-		int by = (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y;
+		int by = (b.gridLoc.y * 20) + b.offset.y + b.dimensions.y;
 		//top y value in room
 
 		int ax = 0;
@@ -79,15 +79,15 @@ public class Corridoor
 
 		if (ay - by > 5)
 		{
-			ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 2, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2);
+			ax = Random.Range((a.gridLoc.x * 20) + a.offset.x + 2, (a.gridLoc.x * 20) + a.offset.x + a.dimensions.x - 2);
 
-			bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
+			bx = Random.Range((b.gridLoc.x * 20) + b.offset.x + 2, (b.gridLoc.x * 20) + b.offset.x + b.dimensions.x - 2);
 
 		}
 		else
 		{
-			int min = Mathf.Max((a.gridLoc.x * 10) + a.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + 2);
-			int max = Mathf.Min((a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
+			int min = Mathf.Max((a.gridLoc.x * 20) + a.offset.x + 2, (b.gridLoc.x * 20) + b.offset.x + 2);
+			int max = Mathf.Min((a.gridLoc.x * 20) + a.offset.x + a.dimensions.x - 2, (b.gridLoc.x * 20) + b.offset.x + b.dimensions.x - 2);
 
 			ax = Random.Range(min, max);
 			bx = ax;
@@ -102,10 +102,10 @@ public class Corridoor
 	private void a_right_b(Room a, Room b)
 	{
 
-		int ax = (a.gridLoc.x * 10) + a.offset.x;
+		int ax = (a.gridLoc.x * 20) + a.offset.x;
 		// bottom y value in room
 
-		int bx = (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x;
+		int bx = (b.gridLoc.x * 20) + b.offset.x + b.dimensions.x;
 		//top y value in room
 
 
@@ -116,15 +116,15 @@ public class Corridoor
 
 		if (ay - by > 5)
 		{
-			ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 2, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2);
+			ay = Random.Range((a.gridLoc.y * 20) + a.offset.y + 2, (a.gridLoc.y * 20) + a.offset.y + a.dimensions.y - 2);
 
-			by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
+			by = Random.Range((b.gridLoc.y * 20) + b.offset.y + 2, (b.gridLoc.y * 20) + b.offset.y + b.dimensions.y - 2);
 
 		}
 		else
 		{
-			int min = Mathf.Max((a.gridLoc.y * 10) + a.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + 2);
-			int max = Mathf.Min((a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
+			int min = Mathf.Max((a.gridLoc.y * 20) + a.offset.y + 2, (b.gridLoc.y * 20) + b.offset.y + 2);
+			int max = Mathf.Min((a.gridLoc.y * 20) + a.offset.y + a.dimensions.y - 2, (b.gridLoc.y * 20) + b.offset.y + b.dimensions.y - 2);
 
 			ay = Random.Range(min, max);
 			by = ay;
@@ -162,21 +162,17 @@ public class DungeonNode
 
 	}
 
-	public void AddConnection(DungeonNode node, Corridoor corridoor = null)
+	public void AddConnection(DungeonNode node, bool makeCorridoor = true)
 	{
 		if (!connected.Contains(node))
 		{
 			connected.Add(node);
 
-			if (corridoor == null)
+			if (makeCorridoor)
 			{
 				corridoors.Add(new Corridoor(room,node.room));
 			}
-			else
-			{
-				corridoors.Add(corridoor);
-			}
-			node.AddConnection(this);
+			node.AddConnection(this, false);
 		}
 
 	}
