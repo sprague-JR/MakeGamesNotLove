@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EnemyScripts;
 using UnityEngine;
 using PlayerScripts;
 
@@ -7,7 +8,7 @@ namespace WeaponScripts
 {
     class AoeAttack: Boon
     {
-
+        
         private float gizmoRange = 0f;
         private Vector2 pos;
       
@@ -18,7 +19,7 @@ namespace WeaponScripts
 
         override public uint damage()
         {
-            return 0;
+            return 5;
         }
 
         override public DamageType damageType()
@@ -68,6 +69,7 @@ namespace WeaponScripts
                         collidedObj.Add(col.gameObject);
                         
                         //add the inflict damage method here
+                        col.gameObject.GetComponent<Enemy>().takeDmg(damage());
                     }
                     
                 }
