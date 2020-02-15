@@ -1,4 +1,5 @@
 using System;
+using EnemyScripts;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -10,22 +11,12 @@ namespace PlayerScripts
         
         private Boon boon;
 
-        private void Start()
-        {
-            
-            // throw new NotImplementedException();
-        }
-
-        private void Update()
-        {
-            // throw new NotImplementedException();
-        }
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.CompareTag($"Enemy"))
             {
-                health -= 10;
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                health -= enemy.dmg();
                 if (health == 0)
                 {
                     Debug.Log("Ya dead ya cunt");

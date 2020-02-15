@@ -12,7 +12,6 @@ namespace PlayerScripts.boons
 
         public void init()
         {
-            Debug.Log("Start ya Dick");
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -32,6 +31,14 @@ namespace PlayerScripts.boons
             rb.velocity = direction.normalized;
             start = position;
             isFlying = true;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.collider.CompareTag("Enemy"))
+            {
+                
+            }
         }
     }
 }
