@@ -11,7 +11,17 @@ namespace WeaponScripts
         
         private float gizmoRange = 0f;
         private Vector2 pos;
-      
+
+        override public float cooldown()
+        {
+            return 3f;
+        }
+
+        override public float range()
+        {
+            return 2f;
+        }
+
         override public uint damage()
         {
             return 5;
@@ -19,7 +29,7 @@ namespace WeaponScripts
 
         override public DamageType damageType()
         {
-            return 0;
+            return DamageType.Aoe;
         }
 
         override public void attack(Vector2 position, Vector2 direction)
@@ -35,10 +45,10 @@ namespace WeaponScripts
             LayerMask lm = LayerMask.GetMask("Enemy");
             List<GameObject> collidedObj = new List<GameObject>();
 
-            for (float i = 0; i <= range; i += 0.1f)
+            for (float i = 0; i <= range(); i += 0.1f)
             {
                 //cast a circle collider which returns an array of all enemy colliders
-                Collider2D[] cols = Physics2D.OverlapCircleAll(new Vector2(pos.x, pos.y), range, lm);
+                Collider2D[] cols = Physics2D.OverlapCircleAll(new Vector2(pos.x, pos.y), range(), lm);
                 gizmoRange = i; //update gizmo range
                 
                 foreach (Collider2D col in cols)
