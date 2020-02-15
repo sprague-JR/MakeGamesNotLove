@@ -28,5 +28,14 @@ namespace PlayerScripts.oaths
         {
             broke = b;
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "Water")
+            {
+                Debug.Log("Splish Splosh oh my gosh");
+                broke = true;
+            }
+        }
     }
 }
