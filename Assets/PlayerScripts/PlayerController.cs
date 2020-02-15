@@ -9,13 +9,10 @@ namespace PlayerScripts
     {
         public float speed = 10f;
 
-       
-
         private Vector2 moveInput;
         private Vector2 direction;
         private Vector2 moveVelocity;
 
-        private Boon boon;
         private MeleeAttack meleeAt;
         private BoonManager boonManager;
         [HideInInspector]
