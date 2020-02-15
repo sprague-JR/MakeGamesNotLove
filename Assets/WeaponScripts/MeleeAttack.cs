@@ -7,6 +7,15 @@ using PlayerScripts;
 
 class MeleeAttack : Boon
 {
+    override public float cooldown()
+    {
+        return 0.5f;
+    }
+
+    override public float range()
+    {
+        return 2f;
+    }
 
     override public uint damage()
     {
@@ -23,7 +32,7 @@ class MeleeAttack : Boon
         RaycastHit2D hit;
         LayerMask lm = LayerMask.GetMask("Enemy");
 
-        hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range, lm);
+        hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range(), lm);
 
         if (hit)
         {

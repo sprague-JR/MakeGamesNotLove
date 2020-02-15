@@ -9,15 +9,13 @@ namespace PlayerScripts
     {
         public float speed = 10f;
 
-       
-
         private Vector2 moveInput;
         private Vector2 direction;
         private Vector2 moveVelocity;
 
         private Boon boon;
         private MeleeAttack meleeAt;
-        private BoonManager boonManager;
+        private GodManager godManager;
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -26,11 +24,11 @@ namespace PlayerScripts
             direction = Vector2.up;
             rb = GetComponent<Rigidbody2D>();
             meleeAt = GetComponent<MeleeAttack>();
-            boonManager = GetComponent<BoonManager>();
-            boonManager.init();
+            godManager = GetComponent<GodManager>();
+            godManager.init();
             for (int i = 0; i < 4; i++)
             {
-                boonManager.enableBoon(i);
+                godManager.enableGods(i);
             }
         }
 
@@ -47,19 +45,19 @@ namespace PlayerScripts
 
             if (Input.GetButtonDown("Fire1"))
             {
-                boonManager.attack(3, transform.position, direction);
+                godManager.attack(3, transform.position, direction);
             }
             else if(Input.GetButtonDown("Fire2"))
             {
-                boonManager.attack(1, transform.position, direction);
+                godManager.attack(1, transform.position, direction);
             }
             else if (Input.GetButtonDown("Fire3"))
             {
-                boonManager.attack(2, transform.position, direction);
+                godManager.attack(2, transform.position, direction);
             }
             else if (Input.GetButtonDown("Fire4"))
             {
-                boonManager.attack(0, transform.position, direction);
+                godManager.attack(0, transform.position, direction);
             }
         }
 
