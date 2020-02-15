@@ -932,7 +932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 10
   range: 5
-  ball: {fileID: 6315704627370286984, guid: 18b678af26de7294c9d66f38a4b682bc, type: 3}
+  ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
 --- !u!1 &1587972641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,7 +1071,7 @@ PrefabInstance:
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
@@ -1140,6 +1140,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ee65984211a0ee68af11ca3ffe22d4, type: 3}
+--- !u!1 &1726404854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2838486641555983220, guid: 92ee65984211a0ee68af11ca3ffe22d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 942520173786851968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726404859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726404854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234886c68c6248f2a66f5aa10068a861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!1 &1969416431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2838486641555983220, guid: 92ee65984211a0ee68af11ca3ffe22d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1659357967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969416436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969416431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234886c68c6248f2a66f5aa10068a861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!1 &2030942266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1905,7 @@ PrefabInstance:
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
