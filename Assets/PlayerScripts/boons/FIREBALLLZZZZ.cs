@@ -9,6 +9,7 @@ namespace PlayerScripts.boons
         private Rigidbody2D rb;
         private Vector2 start;
         private bool isFlying;
+        public float speed = 1;
         public float range;
         public uint dmg;
 
@@ -30,7 +31,7 @@ namespace PlayerScripts.boons
         public void attack(Vector2 position, Vector2 direction)
         {
             rb.MovePosition(position);
-            rb.velocity = direction.normalized;
+            rb.velocity = direction.normalized * speed;
             start = position;
             isFlying = true;
         }
