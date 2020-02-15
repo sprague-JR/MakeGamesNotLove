@@ -29,15 +29,9 @@ namespace WeaponScripts
 
         override public void attack(Vector2 position, Vector2 direction)
         {
-
             pos = position;
-            Debug.Log("aoe cast");
-
             //start a coroutine which will grow a circle collider arround the player
             StartCoroutine("AoeCast");
-
-            
-            
         }
 
         IEnumerator AoeCast()
@@ -71,18 +65,17 @@ namespace WeaponScripts
                         //add the inflict damage method here
                         col.gameObject.GetComponent<Enemy>().takeDmg(damage());
                     }
-                    
                 }
                 yield return null;
             }
+
+            gizmoRange = 0.0f;
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(transform.position, gizmoRange);
-
         }
-
     }
 }
