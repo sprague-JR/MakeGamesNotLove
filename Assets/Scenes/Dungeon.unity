@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critical_path_length: 20
-  min_rooms: 30
+  min_rooms: 5
   max_rooms: 50
   x: 10
   y: 10

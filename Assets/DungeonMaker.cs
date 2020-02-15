@@ -42,6 +42,25 @@ public class DungeonMaker : MonoBehaviour
 			mg.createmap(tl, br);
 
 		}
+
+
+		List<Corridoor> drawnCorridoors = new List<Corridoor>();
+
+		foreach(DungeonNode dn in rooms)
+		{
+			foreach(Corridoor c in dn.corridoors)
+			{
+				if(!drawnCorridoors.Contains(c))
+				{
+
+					mg.coridor(c.a,c.b);
+					drawnCorridoors.Add(c);
+				}
+
+			}
+
+
+		}
     }
 
     void makeRooms()

@@ -11,13 +11,11 @@ public class Room
 	public Vector2Int dimensions;
 
 	public Vector2Int offset;
-	Color color;
 	public GameObject rendered;
 
 
 	public Room(int x, int y, int grid_size = 10, int min_length = 5, int max_length = 8, bool secondary = false)
-	{
-		color = Random.ColorHSV();
+	{ 
 
 		gridLoc = new Vector2Int(x, y);
 
@@ -50,6 +48,61 @@ public class Corridoor
 
 
 
+	public Corridoor(Room a, Room b)
+	{
+
+		if (a.gridLoc.x > b.gridLoc.x)
+			a_right_b(a, b);
+		else if (a.gridLoc.x < b.gridLoc.x)
+			a_right_b(b, a);
+		else if (a.gridLoc.y > b.gridLoc.y)
+			a_over_b(a, b);
+		else if (a.gridLoc.y < b.gridLoc.y)
+			a_over_b(b, a);
+
+
+
+	}
+
+
+	private void a_over_b(Room a, Room b)
+	{
+		int ay = (a.gridLoc.y * 10) + a.offset.y;
+		// bottom y value in room
+
+		int by = (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y;
+		//top y value in room
+
+		int ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 1, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 1);
+
+		int bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 1, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 1);
+
+		this.a = new Vector2Int(ax, ay);
+		this.b = new Vector2Int(bx, by);
+
+
+
+	}
+
+	private void a_right_b(Room a, Room b)
+	{
+
+		int ax = (a.gridLoc.x * 10) + a.offset.x;
+		// bottom y value in room
+
+		int bx = (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x;
+		//top y value in room
+
+		int ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 1, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 1);
+
+		int by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 1, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 1);
+
+		this.a = new Vector2Int(ax, ay);
+		this.b = new Vector2Int(bx, by);
+
+	}
+
+
 
 }
 
@@ -74,12 +127,20 @@ public class DungeonNode
 
 	}
 
-	public void AddConnection(DungeonNode node)
+	public void AddConnection(DungeonNode node, Corridoor corridoor = null)
 	{
 		if (!connected.Contains(node))
 		{
 			connected.Add(node);
-			corridoors.Add(new Corridoor(room.gridLoc.x, room.gridLoc.y, node.room.gridLoc.x, node.room.gridLoc.y));
+
+			if (corridoor == null)
+			{
+				corridoors.Add(new Corridoor(room,node.room));
+			}
+			else
+			{
+				corridoors.Add(corridoor);
+			}
 			node.AddConnection(this);
 		}
 
