@@ -10,8 +10,9 @@ namespace PlayerScripts.boons
         private bool isFlying;
         public float range;
 
-        private void Start()
+        public void init()
         {
+            Debug.Log("Start ya Dick");
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -20,6 +21,7 @@ namespace PlayerScripts.boons
             if (!isFlying) return;
             if (!((rb.position - start).magnitude >= range)) return;
             
+            Debug.Log("Its time to STAHP");
             isFlying = false;
             rb.velocity = Vector2.zero;
         }

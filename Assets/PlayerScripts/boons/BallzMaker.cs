@@ -24,6 +24,7 @@ namespace PlayerScripts.boons
         public override void attack(Vector2 position, Vector2 direction)
         {
             FIREBALLLZZZZ newBall = Instantiate(ball, position, Quaternion.identity);
+            newBall.init();
             newBall.range = range;
             newBall.attack(position, direction);
         }
