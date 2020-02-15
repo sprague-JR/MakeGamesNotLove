@@ -6,6 +6,7 @@ using PlayerScripts;
 
 class MeleeAttack : MonoBehaviour, Boon
 {
+    public float cooldown = 0.0f;
     public float range = 2.0f;
 
     public God god()

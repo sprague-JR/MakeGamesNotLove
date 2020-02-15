@@ -7,37 +7,33 @@ namespace EnemyScripts
     public class EnemyController : MonoBehaviour
     {
         public float speed;
-        public PlayerController player;
         public float force = 10f;
         
+        private PlayerController player;
         private Vector2 moveVelocity;
         private Rigidbody2D rb;
         private Vector2 pos, offset;
 
-        private void FixedUpdate()
-        {
-            
-            var position = rb.position;
-            Vector2 move = (player.rb.position - position).normalized;
-            moveVelocity = move * speed;
-            pos = position + (moveVelocity+offset )* Time.fixedDeltaTime;
-            offset = Vector2.zero;
-            rb.MovePosition(pos);
-
-        }
+        
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            player = GameObject.Find("Player").GetComponent<PlayerController>();
         }
 
-        private void Update()
+
+        private void FixedUpdate()
         {
-            
+
+            var position = rb.position;
+            Vector2 move = (player.rb.position - position).normalized;
+            moveVelocity = move * speed;
+            pos = position + (moveVelocity + offset) * Time.fixedDeltaTime;
+            offset = Vector2.zero;
+            rb.MovePosition(pos);
 
         }
-
-
 
         private void OnCollisionEnter2D(Collision2D other)
         {
