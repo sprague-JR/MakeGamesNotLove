@@ -5,6 +5,5 @@
         string name();
         bool didBreak();
         bool hasBeenBroken();
-        God god();
     }
 }

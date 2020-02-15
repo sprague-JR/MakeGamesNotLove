@@ -12,11 +12,6 @@ namespace WeaponScripts
         private float gizmoRange = 0f;
         private Vector2 pos;
       
-        override public God god()
-        {
-            return null;
-        }
-
         override public uint damage()
         {
             return 5;

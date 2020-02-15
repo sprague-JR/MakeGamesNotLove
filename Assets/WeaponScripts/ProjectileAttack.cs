@@ -8,13 +8,6 @@ namespace WeaponScripts
 {
     class ProjectileAttack: Boon
     {
-
-        
-        override public God god()
-        {
-            return null;
-        }
-
         override public uint damage()
         {
             return 0;

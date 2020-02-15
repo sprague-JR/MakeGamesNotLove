@@ -8,11 +8,6 @@ using PlayerScripts;
 class MeleeAttack : Boon
 {
 
-    override public God god()
-    {
-        return null;
-    }
-
     override public uint damage()
     {
         return 10;

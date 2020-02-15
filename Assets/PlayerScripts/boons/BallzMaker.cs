@@ -5,12 +5,15 @@ namespace PlayerScripts.boons
     public class BallzMaker : Boon
     {
         public FIREBALLLZZZZ ball;
-        
-        public override God god()
+
+
+
+        private void Start()
         {
-            throw new System.NotImplementedException();
+
         }
 
+      
         public override uint damage()
         {
             return 10;
