@@ -25,10 +25,8 @@ public class DungeonMaker : MonoBehaviour
     {
 
 		makeRooms();
+		makePath();
 
-		//connect();
-
-		GeneratePath();
     }
 
 
@@ -52,7 +50,6 @@ public class DungeonMaker : MonoBehaviour
 		{
 			int index = Mathf.RoundToInt(Random.Range(0, empty.Count - 1));
 			rooms.Add(new DungeonNode(new Room(empty[index].x, empty[index].y)));
-			Debug.Log(index);
 			empty.RemoveAt(index);
 
 		}
@@ -61,148 +58,221 @@ public class DungeonMaker : MonoBehaviour
 	}
 
 
-
-	void connect()
+	void makePath()
 	{
-		//connect pre-existing rooms using a corridoor
-		List<Corridoor> corridoors = new List<Corridoor>();
+		DungeonNode[,] grid = new DungeonNode[x, y];
+		Dictionary<DungeonNode, DungeonNode> prev = new Dictionary<DungeonNode, DungeonNode>();
+		Dictionary<DungeonNode, int> dist = new Dictionary<DungeonNode, int>();
+		List<DungeonNode> toVisit = new List<DungeonNode>();
 
-		bool[,] big_grid = new bool[x, y];
-
-		for(int i = 0; i < rooms.Count;i++)
-		{
-			big_grid[rooms[i].room.gridLoc.x, rooms[i].room.gridLoc.y] = true;
-
-		}
-
-
-		foreach(DungeonNode first in rooms)
-		{
-			foreach(DungeonNode second in rooms)
-			{
-
-				//add connections between adjacent horizontal and vertical rooms
-				if ((first.room.gridLoc.x == second.room.gridLoc.x && first.room.gridLoc.y == second.room.gridLoc.y + 1)
-					|| first.room.gridLoc.x == second.room.gridLoc.x + 1 && first.room.gridLoc.y == second.room.gridLoc.y)
-				{
-					first.AddConnection(second);
-				}
-			}
-		}
-
-
-
-
-
-
-
-	}
-
-
-
-
-
-	void GeneratePath()
-	{
-
-		bool[,] hasRoom = new bool[x, y];
-		List<Vector2Int> toVisit = new List<Vector2Int>();
-		List<Vector2Int> visited = new List<Vector2Int>();
-		List<Vector2Int> required = new List<Vector2Int>();
 
 		foreach (DungeonNode dn in rooms)
 		{
-			hasRoom[dn.room.gridLoc.x, dn.room.gridLoc.y] = true;
-			toVisit.Add(dn.room.gridLoc);
-			required.Add(dn.room.gridLoc);
+			grid[dn.room.gridLoc.x, dn.room.gridLoc.y] = dn;
+
 		}
 
-		Dictionary<Vector2Int, int> distance = new Dictionary<Vector2Int, int>();
-		Dictionary<Vector2Int, Vector2Int> previous = new Dictionary<Vector2Int, Vector2Int>();
 
-		Vector2Int current = toVisit[0];
+		toVisit.Add(rooms[0]);
+		dist.Add(toVisit[0], 0);
+		prev.Add(toVisit[0], null);
 
-		toVisit.RemoveAt(0);
-
-		distance.Add(current, 0);
-		visited.Add(current);
-		//distance to self is zero;
-
-		previous.Add(current, new Vector2Int(-1,-1));
-		
-		while( !searchComplete(required, visited))
+		while(toVisit.Count > 0 && !isFinished(rooms, dist))
 		{
+			DungeonNode current = getMinDist(toVisit, dist);
+			toVisit.Remove(current);
 
-			if(current.x > 0 && !visited.Contains(new Vector2Int(current.x - 1, current.y)))
+
+
+			//decrease along x axis
+			if(current.room.gridLoc.x > 0)
 			{
-				Vector2Int temp = new Vector2Int(current.x - 1, current.y);
-				visited.Add(temp);
-				toVisit.Remove(temp);
 
-				distance.Add(temp, distance[current] + (hasRoom[temp.x, temp.y] ? 0 : 1));
+				if(grid[current.room.gridLoc.x - 1,current.room.gridLoc.y] != null && !dist.ContainsKey(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y]))
+				{
+					//found a room, that has not yet been visited
+					dist.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y], dist[current]);
+					toVisit.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y]);
+					prev.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y], current);
+
+
+				}
+				else if(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y] == null)
+				{
+					grid[current.room.gridLoc.x - 1, current.room.gridLoc.y] = new DungeonNode(new Room(current.room.gridLoc.x - 1, current.room.gridLoc.y,10,2,2,true));
+					dist.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y], dist[current] + 1);
+					toVisit.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y]);
+					prev.Add(grid[current.room.gridLoc.x - 1, current.room.gridLoc.y], current);
+				}
+
 
 			}
 
-			if (current.x < x - 1 && !visited.Contains(new Vector2Int(current.x + 1, current.y)))
-			{
-				Vector2Int temp = new Vector2Int(current.x + 1, current.y);
-				visited.Add(temp);
-				toVisit.Remove(temp);
 
-				distance.Add(temp, distance[current] + (hasRoom[temp.x, temp.y] ? 0 : 1));
+			//increase along x axis
+			if (current.room.gridLoc.x < x - 1)
+			{
+
+				if (grid[current.room.gridLoc.x + 1, current.room.gridLoc.y] != null && !dist.ContainsKey(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y]))
+				{
+					//found a room, that has not yet been visited
+					dist.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y], dist[current]);
+					toVisit.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y]);
+					prev.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y], current);
+
+
+				}
+				else if (grid[current.room.gridLoc.x + 1, current.room.gridLoc.y] == null)
+				{
+					grid[current.room.gridLoc.x + 1, current.room.gridLoc.y] = new DungeonNode(new Room(current.room.gridLoc.x + 1, current.room.gridLoc.y, 10, 2, 2, true));
+					dist.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y], dist[current] + 1);
+					toVisit.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y]);
+					prev.Add(grid[current.room.gridLoc.x + 1, current.room.gridLoc.y], current);
+				}
+
 
 			}
 
 
-			if (current.y > 0 && !visited.Contains(new Vector2Int(current.x, current.y - 1)))
+			//decrease along y axis
+			if (current.room.gridLoc.y > 0)
 			{
-				Vector2Int temp = new Vector2Int(current.x, current.y - 1);
-				visited.Add(temp);
-				toVisit.Remove(temp);
 
-				distance.Add(temp, distance[current] + (hasRoom[temp.x, temp.y] ? 0 : 1));
+				if (grid[current.room.gridLoc.x, current.room.gridLoc.y - 1] != null && !dist.ContainsKey(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1]))
+				{
+					//found a room, that has not yet been visited
+					dist.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1], dist[current]);
+					toVisit.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1]);
+					prev.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1], current);
+
+
+				}
+				else if (grid[current.room.gridLoc.x, current.room.gridLoc.y - 1] == null)
+				{
+					grid[current.room.gridLoc.x, current.room.gridLoc.y - 1] = new DungeonNode(new Room(current.room.gridLoc.x, current.room.gridLoc.y - 1, 10, 2, 2, true));
+					dist.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1], dist[current] + 1);
+					toVisit.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1]);
+					prev.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y - 1], current);
+				}
+
 
 			}
 
-			if (current.y < y - 1 && !visited.Contains(new Vector2Int(current.x, current.y + 1)))
-			{
-				Vector2Int temp = new Vector2Int(current.x, current.y + 1);
-				visited.Add(temp);
-				toVisit.Remove(temp);
 
-				distance.Add(temp, distance[current] + (hasRoom[temp.x, temp.y] ? 0 : 1));
+			//increase along y axis
+			if (current.room.gridLoc.y < y - 1)
+			{
+
+				if (grid[current.room.gridLoc.x, current.room.gridLoc.y + 1] != null && !dist.ContainsKey(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1]))
+				{
+					//found a room, that has not yet been visited
+					dist.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1], dist[current]);
+					toVisit.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1]);
+
+					prev.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1], current);
+
+
+				}
+				else if (grid[current.room.gridLoc.x, current.room.gridLoc.y + 1] == null)
+				{
+					grid[current.room.gridLoc.x, current.room.gridLoc.y + 1] = new DungeonNode(new Room(current.room.gridLoc.x, current.room.gridLoc.y + 1, 10, 2, 2, true));
+					dist.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1], dist[current] + 1);
+					toVisit.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1]);
+					prev.Add(grid[current.room.gridLoc.x, current.room.gridLoc.y + 1], current);
+				}
+
 
 			}
-			// Add unvisited adjacent rooms
+		}
 
 
-			//update current
+		List<DungeonNode> keep = new List<DungeonNode>();
+
+
+		foreach(DungeonNode dn in rooms)
+		{
+			DungeonNode current = dn;
+
+			while(prev[current] != null)
+			{
+				keep.Add(current);
+				current = prev[current];
+			}
 		}
 
 
 
-
-
-
+		for(int ix = 0; ix < x; ix++)
+		{
+			for(int iy = 0; iy < y; iy++)
+			{
+				if(grid[ix,iy] != null && !keep.Contains(grid[ix,iy]))
+				{
+					grid[ix, iy].Destroy();
+					grid[ix, iy] = null;
+				}
+			}
+		}
 		
+
+
+
 
 
 
 	}
 
-
-	bool searchComplete(List<Vector2Int> necessary, List<Vector2Int> current)
+	bool isFinished(List<DungeonNode> required, Dictionary<DungeonNode,int> dist)
 	{
 
-		foreach(Vector2Int vn in necessary)
+		foreach(DungeonNode r in required)
 		{
-			if(!current.Contains(vn))
+			if (!dist.ContainsKey(r))
+			{
 				return false;
-
+			}
+				
 		}
+
+
 		return true;
+	}
+
+
+
+	DungeonNode getMinDist(List<DungeonNode> visited, Dictionary<DungeonNode,int> dist)
+	{
+		DungeonNode min = visited[0];
+		int minDist = dist[min];
+
+		foreach(DungeonNode dn in visited)
+		{
+			if(dist.ContainsKey(dn) && dist[dn] < minDist)
+			{
+				min = dn;
+				minDist = dist[min];
+			}
+
+			if(dist.ContainsKey(dn) && dist[dn] == minDist)
+			{
+				if(!rooms.Contains(min) && rooms.Contains(dn))
+				{
+					//show preference for old rooms not making new ones
+					min = dn;
+				}
+
+			}
+		}
+		Debug.Log(minDist);
+		return min;
 
 	}
+
+
+
+
+
+
 
 
 

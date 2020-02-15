@@ -12,10 +12,10 @@ public class Room
 
 	Vector2Int offset;
 	Color color;
-	GameObject rendered;
+	public GameObject rendered;
 
 
-	public Room(int x, int y, int grid_size = 10, int min_length = 5, int max_length = 8)
+	public Room(int x, int y, int grid_size = 10, int min_length = 5, int max_length = 8, bool secondary = false)
 	{
 		color = Random.ColorHSV();
 
@@ -28,8 +28,11 @@ public class Room
 
 		rendered = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-		rendered.transform.position = new Vector3((gridLoc.x * grid_size) + offset.x + (dimensions.x / 2), 0, (gridLoc.y * grid_size)+ offset.y + (dimensions.y / 2));
+		rendered.transform.position = new Vector3((gridLoc.x * grid_size)/* + offset.x + (dimensions.x / 2)*/, 0, (gridLoc.y * grid_size)/*+ offset.y + (dimensions.y / 2)*/);
 		rendered.transform.localScale = new Vector3(dimensions.x, 2, dimensions.y);
+
+		if (secondary)
+			rendered.GetComponent<Renderer>().material.color = Color.red;
 	}
 }
 
@@ -81,6 +84,12 @@ public class DungeonNode
 			corridoors.Add(new Corridoor(room.gridLoc.x, room.gridLoc.y, node.room.gridLoc.x, node.room.gridLoc.y));
 			node.AddConnection(this);
 		}
+
+	}
+
+	public void Destroy()
+	{
+		GameObject.Destroy(room.rendered);
 
 	}
 
