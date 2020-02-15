@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using PlayerScripts;
+using PlayerScripts.oaths;
 
 public class ScnManager : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class ScnManager : MonoBehaviour
     public GameObject deathUI;
 
     private Player player;
+    private MurderOath murderOath;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         deathUI = GameObject.Find("DeathUI");
+        murderOath = GameObject.Find("MurderousGod").GetComponentInChildren<MurderOath>();
 
         deathUI.SetActive(false);
     }
@@ -42,7 +45,8 @@ public class ScnManager : MonoBehaviour
 
     public void NextLevel()
     {
-
+        murderOath.countEnemies();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()

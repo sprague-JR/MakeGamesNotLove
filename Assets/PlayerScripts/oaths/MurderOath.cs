@@ -28,5 +28,15 @@ namespace PlayerScripts.oaths
         {
             broke = b;
         }
+
+        public void countEnemies()
+        {
+            if (GameObject.FindGameObjectsWithTag("Enemy") != null)
+            {
+                // if some enemies remain
+                broke = true;
+
+            }
+        }
     }
 }
