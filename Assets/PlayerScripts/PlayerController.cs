@@ -30,7 +30,7 @@ namespace PlayerScripts
             boonManager.init();
             for (int i = 0; i < 4; i++)
             {
-                boonManager.enableBoon(i);
+                boonManager.enableGods(i);
             }
         }
 

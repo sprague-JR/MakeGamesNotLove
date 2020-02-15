@@ -1,40 +1,50 @@
 ﻿using System;
+using PlayerScripts.gods;
+using PlayerScripts.oaths;
 using UnityEngine;
 
 namespace PlayerScripts
 {
     public class BoonManager: MonoBehaviour
     {
-        private Boon[] boon;
-        private bool[] enabledBoons;
+        private God[] gods;
+        private bool[] enabledGods;
 
         public void init()
         {
-            GameObject weaponSelector = GameObject.Find("WeaponSelect");
-            boon = new Boon[weaponSelector.transform.childCount];
-            enabledBoons = new bool[boon.Length];
-            for (int i = 0; i < weaponSelector.transform.childCount; i++)
+            GameObject godSelector = GameObject.Find("GodSelector");
+            gods = new God[godSelector.transform.childCount];
+            enabledGods = new bool[gods.Length];
+            for (int i = 0; i < godSelector.transform.childCount; i++)
             {
-                boon[i] = weaponSelector.transform.GetChild(i).GetComponent<Boon>();
-                enabledBoons[i] = false;
+                gods[i] = godSelector.transform.GetChild(i).GetComponent<God>();
+                enabledGods[i] = false;
             }
         }
 
-        public void enableBoon(int index)
+        public void enableGods(int index)
         {
-            enabledBoons[index] = true;
+            enabledGods[index] = true;
         }
 
-        public void disableBoon(int index)
+        public void disableGod(int index)
         {
-            enabledBoons[index] = false;
+            enabledGods[index] = false;
         }
 
         public void attack(int index, Vector2 position, Vector2 direction)
         {
-            if (enabledBoons[index])
+            if (enabledGods[index])
             {
-                boon[index].attack(position, direction);
+                gods[index].boon().attack(position, direction);
+            }
+
+            for (var i = 0; i < enabledGods.Length; i++)
+            {
+                if (!(gods[i] is PacifistGod)) continue;
+                enabledGods[i] = false;
+                ((PacifistOath) gods[i].oath()).playerAttack(true);
+                break;
             }
         }
     }

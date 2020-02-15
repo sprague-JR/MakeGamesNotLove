@@ -4,6 +4,13 @@ namespace PlayerScripts.oaths
 {
     public class PacifistOath : MonoBehaviour, Oath
     {
+        private bool attacked;
+
+        public void playerAttack(bool a)
+        {
+            attacked = a;
+        }
+        
         public new string name()
         {
             return "No killy Billy";
@@ -11,12 +18,12 @@ namespace PlayerScripts.oaths
 
         public bool didBreak()
         {
-            throw new System.NotImplementedException();
+            return attacked;
         }
 
         public bool hasBeenBroken()
         {
-            throw new System.NotImplementedException();
+            return attacked;
         }
     }
 }
