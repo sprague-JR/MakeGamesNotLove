@@ -6,33 +6,33 @@ namespace PlayerScripts
     public class BoonManager: MonoBehaviour
     {
         private Boon[] boon;
-        private bool[] enabled;
+        private bool[] enabledBoons;
 
-        private void Start()
+        public void init()
         {
             GameObject weaponSelector = GameObject.Find("WeaponSelect");
             boon = new Boon[weaponSelector.transform.childCount];
-            enabled = new bool[boon.Length];
+            enabledBoons = new bool[boon.Length];
             for (int i = 0; i < weaponSelector.transform.childCount; i++)
             {
                 boon[i] = weaponSelector.transform.GetChild(i).GetComponent<Boon>();
-                enabled[i] = false;
+                enabledBoons[i] = false;
             }
         }
 
         public void enableBoon(int index)
         {
-            enabled[index] = true;
+            enabledBoons[index] = true;
         }
 
         public void disableBoon(int index)
         {
-            enabled[index] = false;
+            enabledBoons[index] = false;
         }
 
         public void attack(int index, Vector2 position, Vector2 direction)
         {
-            if (enabled[index])
+            if (enabledBoons[index])
             {
                 boon[index].attack(position, direction);
             }

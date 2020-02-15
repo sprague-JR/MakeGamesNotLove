@@ -16,6 +16,7 @@ public class Mapgenerator : MonoBehaviour
     {
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
+
         createmap(new Vector2(-7, 5), new Vector2(-2, 3));
         createmap(new Vector2(4, -1), new Vector2(7, -5));
         coridor(new Vector2(-3, 3), new Vector2(6, -1));
@@ -24,6 +25,7 @@ public class Mapgenerator : MonoBehaviour
 
     public void createmap(Vector2 topLeft, Vector2 bottomRight)
     {
+		print("map");
         int leftX = Mathf.RoundToInt(topLeft.x);
         int leftY = Mathf.RoundToInt(topLeft.y);
         int rightX = Mathf.RoundToInt(bottomRight.x);
