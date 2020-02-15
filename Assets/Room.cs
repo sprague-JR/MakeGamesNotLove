@@ -73,9 +73,9 @@ public class Corridoor
 		int by = (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y;
 		//top y value in room
 
-		int ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 1, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 1);
+		int ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 2, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2);
 
-		int bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 1, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 1);
+		int bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
 
 		this.a = new Vector2Int(ax, ay);
 		this.b = new Vector2Int(bx, by);
@@ -93,9 +93,9 @@ public class Corridoor
 		int bx = (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x;
 		//top y value in room
 
-		int ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 1, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 1);
+		int ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 2, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2);
 
-		int by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 1, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 1);
+		int by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
 
 		this.a = new Vector2Int(ax, ay);
 		this.b = new Vector2Int(bx, by);

@@ -17,10 +17,15 @@ public class Mapgenerator : MonoBehaviour
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
 
-		//createmap(new Vector2(-7, 5), new Vector2(-2, 3));
-		//createmap(new Vector2(4, -1), new Vector2(7, -5));
-        //coridor(new Vector2(-3, 3), new Vector2(6, -1));
-    }
+		//createmap(new Vector2(0, 10), new Vector2(8, 0));
+		//createmap(new Vector2(15, 20), new Vector2(30, 0));
+        //corridoor(new Vector2(15, 7), new Vector2(8, 9));
+
+
+
+		//createmap(new Vector2(0, 20), new Vector2(8, 15));
+		//corridoor(new Vector2(3, 10), new Vector2(5, 15));
+	}
 
 
     public void createmap(Vector2 topLeft, Vector2 bottomRight)
@@ -61,7 +66,23 @@ public class Mapgenerator : MonoBehaviour
         walkable.SetTile(new Vector3Int(x, y, 0), walkableTile);
     }
 
-    public void coridor(Vector2 pos1, Vector2 pos2)
+
+	public void closeTile(Vector2 position)
+	{
+		int x = Mathf.RoundToInt(position.x);
+		int y = Mathf.RoundToInt(position.y);
+
+		if (walkable.HasTile(new Vector3Int(x, y, 0)))
+			return;
+
+		nonwalkable.SetTile(new Vector3Int(x, y, 0), nonwalkableTile);
+		walkable.SetTile(new Vector3Int(x, y, 0), null);
+
+	}
+
+
+
+	public void coridor(Vector2 pos1, Vector2 pos2)
     {
         int pos1X = Mathf.RoundToInt(pos1.x);
         int pos1Y = Mathf.RoundToInt(pos1.y);
@@ -69,6 +90,7 @@ public class Mapgenerator : MonoBehaviour
         int pos2Y = Mathf.RoundToInt(pos2.y);
         bool horizontal = false;
         int left = 1;
+
         if (nonwalkable.HasTile(new Vector3Int(pos1X + 1, pos1Y, 0)) == false)
         {
             horizontal = true;
@@ -138,4 +160,327 @@ public class Mapgenerator : MonoBehaviour
         }
 
     }
+
+
+	public void corridoor(Vector2 pos1, Vector2 pos2)
+	{
+		if(isAdjacent(pos1, pos2))
+		{
+
+			return;
+
+
+
+		}
+		else
+		{
+			if(isHorizontal(pos1))
+			{
+				if (pos1.x < pos2.x)
+					joinHorizontal(pos1,pos2);
+				else
+					joinHorizontal(pos2, pos1);
+
+			}
+			else
+			{
+				if (pos1.y < pos2.y)
+				{
+					joinVertical(pos1, pos2);
+				}
+				else
+				{
+					joinVertical(pos2, pos1);
+				}
+
+			}
+
+			//do something different
+
+		}
+
+
+
+
+
+	}
+
+
+
+	public bool isAdjacent(Vector2 pos1, Vector2 pos2)
+	{
+		if (Mathf.Abs(pos1.x - pos2.x) == 1.0f && pos1.y == pos2.y)
+		{
+			openTile(pos1);
+			openTile(pos2);
+
+			openTile(new Vector2(pos1.x, pos1.y + 1));
+			openTile(new Vector2(pos2.x, pos2.y + 1));
+
+			return true;
+
+		}
+
+
+		if (Mathf.Abs(pos1.y - pos2.y) == 1.0f && pos1.x == pos2.x)
+		{
+
+			openTile(pos1);
+			openTile(pos2);
+
+			openTile(new Vector2(pos1.x +1, pos1.y));
+			openTile(new Vector2(pos2.x + 1, pos2.y));
+			return true;
+
+		}
+
+		return false;
+
+
+	}
+
+
+	public bool isHorizontal(Vector2 pos1)
+	{
+		return !nonwalkable.HasTile(new Vector3Int(Mathf.RoundToInt(pos1.x + 1),Mathf.RoundToInt(pos1.y),0));
+
+	}
+
+
+	public void joinHorizontal(Vector2 left, Vector2 right)
+	{
+		//always left to right
+
+
+		float total_distance = (right.x - left.x) + 1;
+
+
+		float delta = right.y - left.y;
+
+
+		for(float i = left.x; i < left.x + Mathf.Floor(total_distance /2); i++)
+		{
+			openTile(new Vector2(i, left.y));
+
+		}
+
+
+		for (float i = left.x + Mathf.Floor(total_distance / 2); i <= right.x; i++)
+		{
+			openTile(new Vector2(i, right.y));
+
+		}
+
+
+		if(delta > 0)
+		{
+			for(float i = left.y; i < left.y + delta; i++)
+			{
+				openTile(new Vector2(left.x + Mathf.Floor(total_distance / 2), i));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.y; i > left.y + delta; i--)
+			{
+				openTile(new Vector2(left.x + Mathf.Floor(total_distance / 2), i));
+			}
+
+
+		}
+
+
+		//walls
+
+
+		for (float i = left.x; i < left.x + Mathf.Floor(total_distance / 2) - Mathf.Sign(delta); i++)
+		{
+			closeTile(new Vector2(i, left.y + 1));
+		}
+
+
+		for (float i = left.x + Mathf.Floor(total_distance / 2) - Mathf.Sign(delta); i <= right.x; i++)
+		{
+			closeTile(new Vector2(i, right.y + 1));
+
+		}
+
+		for (float i = left.x; i < left.x + Mathf.Floor(total_distance / 2) + Mathf.Sign(delta); i++)
+		{
+			closeTile(new Vector2(i, left.y - 1));
+		}
+
+
+		for (float i = left.x + Mathf.Floor(total_distance / 2) + Mathf.Sign(delta); i <= right.x; i++)
+		{
+			closeTile(new Vector2(i, right.y - 1));
+
+		}
+
+
+
+		if (delta > 0)
+		{
+			for (float i = left.y + 1; i < left.y + delta + 1; i++)
+			{
+				closeTile(new Vector2(left.x + Mathf.Floor(total_distance / 2) - 1, i));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.y + 1; i > left.y + delta; i--)
+			{
+				closeTile(new Vector2(left.x + Mathf.Floor(total_distance / 2) + 1, i));
+			}
+
+
+		}
+
+		if (delta > 0)
+		{
+			for (float i = left.y - 1; i < left.y + delta + 1; i++)
+			{
+				closeTile(new Vector2(left.x + Mathf.Floor(total_distance / 2) + 1, i));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.y - 1; i > left.y + delta - 1; i--)
+			{
+				closeTile(new Vector2(left.x + Mathf.Floor(total_distance / 2) - 1, i));
+			}
+
+
+		}
+
+
+
+
+
+
+	}
+
+
+	public void joinVertical(Vector2 left, Vector2 right)
+	{
+		//always left to right
+
+
+		float total_distance = (right.y - left.y) + 1;
+
+
+		float delta = right.x - left.x;
+
+
+		for (float i = left.y; i < left.y + Mathf.Floor(total_distance / 2); i++)
+		{
+			openTile(new Vector2(left.x, i));
+
+		}
+
+
+		for (float i = left.y + Mathf.Floor(total_distance / 2); i <= right.y; i++)
+		{
+			openTile(new Vector2(right.x, i));
+
+		}
+
+
+		if (delta > 0)
+		{
+			for (float i = left.x; i < left.x + delta; i++)
+			{
+				openTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2)));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.x; i > left.x + delta; i--)
+			{
+				openTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2)));
+			}
+
+
+		}
+
+
+
+
+		//walls
+
+
+		for (float i = left.y; i < left.y + Mathf.Floor(total_distance / 2) - Mathf.Sign(delta); i++)
+		{
+			closeTile(new Vector2(left.x +1,i));
+		}
+
+
+		for (float i = left.y + Mathf.Floor(total_distance / 2) - Mathf.Sign(delta); i <= right.y; i++)
+		{
+			closeTile(new Vector2( right.x + 1,i));
+
+		}
+
+		for (float i = left.y; i < left.y + Mathf.Floor(total_distance / 2) + Mathf.Sign(delta); i++)
+		{
+			closeTile(new Vector2(left.x - 1,i));
+		}
+
+
+		for (float i = left.y + Mathf.Floor(total_distance / 2) + Mathf.Sign(delta); i <= right.y; i++)
+		{
+			closeTile(new Vector2(right.x - 1,i));
+
+		}
+
+
+
+		if (delta > 0)
+		{
+			for (float i = left.x + 1; i < left.x + delta + 1; i++)
+			{
+				closeTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2) - 1));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.x + 1; i > left.x + delta; i--)
+			{
+				closeTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2) + 1));
+			}
+
+
+		}
+
+		if (delta > 0)
+		{
+			for (float i = left.x - 1; i < left.x + delta + 1; i++)
+			{
+				closeTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2) + 1));
+			}
+
+
+		}
+		else if (delta < 0)
+		{
+			for (float i = left.x - 1; i > left.x + delta - 1; i--)
+			{
+				closeTile(new Vector2(i, left.y + Mathf.Floor(total_distance / 2) - 1));
+			}
+
+
+		}
+
+
+	}
 }

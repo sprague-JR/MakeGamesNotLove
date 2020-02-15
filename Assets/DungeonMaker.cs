@@ -53,7 +53,7 @@ public class DungeonMaker : MonoBehaviour
 				if(!drawnCorridoors.Contains(c))
 				{
 
-					//mg.coridor(c.a,c.b);
+					mg.corridoor(c.a,c.b);
 					drawnCorridoors.Add(c);
 					
 				}
