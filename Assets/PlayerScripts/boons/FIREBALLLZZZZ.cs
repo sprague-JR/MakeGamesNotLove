@@ -21,14 +21,13 @@ namespace PlayerScripts.boons
             if (!isFlying) return;
             if (!((rb.position - start).magnitude >= range)) return;
             
-            Debug.Log("Its time to STAHP");
             isFlying = false;
             rb.velocity = Vector2.zero;
+            GameObject.Destroy(this.gameObject);
         }
 
         public void attack(Vector2 position, Vector2 direction)
         {
-            Debug.Log("FFFFIIIIIRRRREEEEE");
             rb.MovePosition(position);
             rb.velocity = direction.normalized;
             start = position;
