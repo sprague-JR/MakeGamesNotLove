@@ -30,9 +30,9 @@ namespace PlayerScripts.oaths
             return broke;
         }
 
-        public God god()
+        public void forceBreak(bool b)
         {
-            return fireyGod;
+            broke = b;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

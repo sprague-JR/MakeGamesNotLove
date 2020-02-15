@@ -4,6 +4,8 @@ namespace PlayerScripts.oaths
 {
     public class RunnyBoiOath : MonoBehaviour, Oath
     {
+        private bool broke;
+        
         public new string name()
         {
             return "Keep moving and nobody dies";
@@ -11,12 +13,17 @@ namespace PlayerScripts.oaths
 
         public bool didBreak()
         {
-            throw new System.NotImplementedException();
+            return broke;
         }
 
         public bool hasBeenBroken()
         {
-            throw new System.NotImplementedException();
+            return broke;
+        }
+
+        public void forceBreak(bool b)
+        {
+            broke = b;
         }
     }
 }

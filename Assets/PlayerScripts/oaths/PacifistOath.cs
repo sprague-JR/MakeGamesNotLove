@@ -25,5 +25,10 @@ namespace PlayerScripts.oaths
         {
             return attacked;
         }
+
+        public void forceBreak(bool b)
+        {
+            attacked = b;
+        }
     }
 }

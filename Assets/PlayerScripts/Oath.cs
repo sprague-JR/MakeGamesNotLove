@@ -5,5 +5,6 @@
         string name();
         bool didBreak();
         bool hasBeenBroken();
+        void forceBreak(bool b);
     }
 }
