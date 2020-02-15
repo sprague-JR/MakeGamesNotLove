@@ -28,7 +28,8 @@ class MeleeAttack : Boon
         RaycastHit2D hit;
         LayerMask lm = LayerMask.GetMask("Enemy");
 
-        hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range, lm);
+        //hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range, lm);
+        hit = Physics2D.CircleCast(new Vector2(position.x, position.y), 1.0f, new Vector2(direction.x, direction.y).normalized, range, lm);
 
         if (hit)
         {
