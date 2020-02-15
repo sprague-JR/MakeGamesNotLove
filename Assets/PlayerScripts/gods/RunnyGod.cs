@@ -10,8 +10,8 @@ namespace PlayerScripts.gods
 
         void Start()
         {
-            //fireyBoon = ;
-            //fireyOath = ;
+            runnyBoon = gameObject.GetComponentInChildren<Boon>();
+            runnyOath = gameObject.GetComponentInChildren<Oath>();
         }
 
         public new string name()

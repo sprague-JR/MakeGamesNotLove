@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerScripts;
+using PlayerScripts.gods;
+using PlayerScripts.oaths;
 
 namespace PlayerScripts 
 {
@@ -16,6 +18,7 @@ namespace PlayerScripts
         private Boon boon;
         private MeleeAttack meleeAt;
         private GodManager godManager;
+        private Oath runnyOath;
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -26,10 +29,7 @@ namespace PlayerScripts
             meleeAt = GetComponent<MeleeAttack>();
             godManager = GetComponent<GodManager>();
             godManager.init();
-            for (int i = 0; i < 4; i++)
-            {
-                godManager.enableGods(i);
-            }
+            runnyOath = GameObject.Find("RunnyGod").GetComponentInChildren<Oath>();
         }
 
         // Update is called once per frame
@@ -41,6 +41,13 @@ namespace PlayerScripts
             if (moveInput != Vector2.zero)
             {
                 direction = moveInput;
+            }
+            else
+            {
+                if (!runnyOath.hasBeenBroken())
+                {
+                    runnyOath.forceBreak(true);
+                }
             }
 
             if (Input.GetButtonDown("Fire1"))

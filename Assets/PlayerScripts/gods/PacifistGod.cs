@@ -10,7 +10,8 @@ namespace PlayerScripts.gods
 
         private void Start()
         {
-            
+            pacifistBoon = gameObject.GetComponentInChildren<Boon>();
+            pacifistOath = gameObject.GetComponentInChildren<Oath>();
         }
 
         public string name()

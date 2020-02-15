@@ -9,8 +9,8 @@ namespace PlayerScripts.gods
 
         void Start()
         {
-            //fireyBoon = ;
-            //fireyOath = ;
+            murderousBoon = GetComponentInChildren<Boon>();
+            murderousOath = GetComponentInChildren<Oath>();
         }
 
         public new string name()

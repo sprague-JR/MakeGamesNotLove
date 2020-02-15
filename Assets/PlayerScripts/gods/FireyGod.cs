@@ -11,8 +11,8 @@ namespace PlayerScripts.gods
 
         void Start()
         {
-            fireyBoon = GetComponentInChildren<BallzMaker>();
-            fireyOath = GetComponentInChildren<FyreOath>();
+            fireyBoon = GetComponentInChildren<Boon>();
+            fireyOath = GetComponentInChildren<Oath>();
         }
 
         public new string name()

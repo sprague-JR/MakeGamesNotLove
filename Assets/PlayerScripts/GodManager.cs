@@ -11,7 +11,7 @@ namespace PlayerScripts
 
         public void init()
         {
-            GameObject godSelector = GameObject.Find("GodSelector");
+            GameObject godSelector = GameObject.Find("GodSelect");
             gods = new God[godSelector.transform.childCount];
             for (int i = 0; i < godSelector.transform.childCount; i++)
             {
@@ -31,7 +31,7 @@ namespace PlayerScripts
 
         public void attack(int index, Vector2 position, Vector2 direction)
         {
-            if (gods[index].oath().hasBeenBroken())
+            if (!gods[index].oath().hasBeenBroken())
             {
                 gods[index].boon().attack(position, direction);
             }

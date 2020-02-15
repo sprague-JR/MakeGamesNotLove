@@ -8,12 +8,6 @@ namespace PlayerScripts.oaths
     public class FyreOath : MonoBehaviour, Oath
     {
         private bool broke;
-        private God fireyGod;
-
-        private void Start()
-        {
-            fireyGod = new FireyGod();
-        }
 
         public new string name()
         {
@@ -33,14 +27,6 @@ namespace PlayerScripts.oaths
         public void forceBreak(bool b)
         {
             broke = b;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                broke = true;
-            }
         }
     }
 }
