@@ -6,7 +6,7 @@ using PlayerScripts;
 
 class MeleeAttack : MonoBehaviour, Boon
 {
-
+    public float range = 2.0f;
 
     public God god()
     {
@@ -25,18 +25,31 @@ class MeleeAttack : MonoBehaviour, Boon
 
     public void attack(Vector2 position, Vector2 direction)
     {
-        RaycastHit hit;
-        //LayerMask lm = LayerMask.GetMask("Characters");
+        RaycastHit2D hit;
+        LayerMask lm = LayerMask.GetMask("Enemy");
 
-        Physics.Raycast(new Vector3(position.x, position.y, 0), new Vector3(direction.x, direction.y, 0).normalized, out hit, 2.0f);
-        Gizmos.DrawRay(transform.position, new Vector3(direction.x, direction.y, 0).normalized * 5f);
-        SetLaserPos(hit);
+
+        hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range, lm);
+
+        if (hit)
+        {
+            Color color = Color.white;
+            float duration = 2.0f;
+            Debug.DrawLine(transform.position, hit.transform.position, color, duration);
+            SetLaserPos(hit);
+        }
+
     }
 
-    void SetLaserPos(RaycastHit hit)
+    void SetLaserPos(RaycastHit2D hit)
     {
-
-        Debug.Log("I hit something 2 units in front of me");
+            
+            if(hit.collider)
+            {
+                Debug.Log("Attack ennemy");
+                
+            }
+        
     }
 
 }
