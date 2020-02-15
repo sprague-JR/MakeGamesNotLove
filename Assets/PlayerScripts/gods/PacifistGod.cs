@@ -14,7 +14,7 @@ namespace PlayerScripts.gods
             pacifistOath = gameObject.GetComponentInChildren<Oath>();
         }
 
-        public string name()
+        public new string name()
         {
             return "Anti-Gandhi";
         }
