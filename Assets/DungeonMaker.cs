@@ -62,6 +62,10 @@ public class DungeonMaker : MonoBehaviour
 
 
 		}
+
+
+
+		mg.Wallify(x * 10,y * 10);
     }
 
     void makeRooms()
