@@ -21,7 +21,7 @@ public class Room
 
 		dimensions = new Vector2Int(Random.Range(min_length, max_length), Random.Range(min_length, max_length));
 
-		offset = new Vector2Int(Random.Range(0, grid_size - dimensions.x),Random.Range(0,grid_size - dimensions.y));
+		offset = new Vector2Int(Random.Range(1, grid_size - dimensions.x - 1),Random.Range(1,grid_size - dimensions.y - 1));
 
 
 		rendered = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -73,13 +73,28 @@ public class Corridoor
 		int by = (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y;
 		//top y value in room
 
-		int ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 2, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2);
+		int ax = 0;
+		int bx = 0;
+		Debug.Log("a over b");
 
-		int bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
+		if (ay - by > 5)
+		{
+			ax = Random.Range((a.gridLoc.x * 10) + a.offset.x + 2, (a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2);
+
+			bx = Random.Range((b.gridLoc.x * 10) + b.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
+
+		}
+		else
+		{
+			int min = Mathf.Max((a.gridLoc.x * 10) + a.offset.x + 2, (b.gridLoc.x * 10) + b.offset.x + 2);
+			int max = Mathf.Min((a.gridLoc.x * 10) + a.offset.x + a.dimensions.x - 2, (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x - 2);
+
+			ax = Random.Range(min, max);
+			bx = ax;
+		}
 
 		this.a = new Vector2Int(ax, ay);
 		this.b = new Vector2Int(bx, by);
-
 
 
 	}
@@ -93,12 +108,32 @@ public class Corridoor
 		int bx = (b.gridLoc.x * 10) + b.offset.x + b.dimensions.x;
 		//top y value in room
 
-		int ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 2, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2);
 
-		int by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
+
+		int ay = 0, by = 0;
+
+
+
+		if (ay - by > 5)
+		{
+			ay = Random.Range((a.gridLoc.y * 10) + a.offset.y + 2, (a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2);
+
+			by = Random.Range((b.gridLoc.y * 10) + b.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
+
+		}
+		else
+		{
+			int min = Mathf.Max((a.gridLoc.y * 10) + a.offset.y + 2, (b.gridLoc.y * 10) + b.offset.y + 2);
+			int max = Mathf.Min((a.gridLoc.y * 10) + a.offset.y + a.dimensions.y - 2, (b.gridLoc.y * 10) + b.offset.y + b.dimensions.y - 2);
+
+			ay = Random.Range(min, max);
+			by = ay;
+		}
+
 
 		this.a = new Vector2Int(ax, ay);
 		this.b = new Vector2Int(bx, by);
+
 
 	}
 

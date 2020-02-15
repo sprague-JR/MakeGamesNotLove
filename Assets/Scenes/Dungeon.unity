@@ -219,10 +219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critical_path_length: 20
-  min_rooms: 5
-  max_rooms: 50
-  x: 10
-  y: 10
+  min_rooms: 8
+  max_rooms: 15
+  x: 5
+  y: 5
   mg: {fileID: 0}
 --- !u!114 &344013226
 MonoBehaviour:
