@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public interface Boon
+    public interface Boon : MonoBehaviour
     {
         God god();
         uint damage();

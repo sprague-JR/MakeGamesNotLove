@@ -6,6 +6,7 @@ using PlayerScripts;
 
 class MeleeAttack : MonoBehaviour, Boon
 {
+    public float cooldown = 0.0f;
     public float range = 2.0f;
 
     public God god()
@@ -27,6 +28,8 @@ class MeleeAttack : MonoBehaviour, Boon
     {
         RaycastHit2D hit;
         LayerMask lm = LayerMask.GetMask("Enemy");
+
+        Debug.Log("melee attack");
 
 
         hit = Physics2D.Raycast(new Vector2(position.x, position.y), new Vector2(direction.x, direction.y).normalized, range, lm);
