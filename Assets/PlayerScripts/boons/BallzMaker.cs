@@ -6,14 +6,16 @@ namespace PlayerScripts.boons
     {
         public FIREBALLLZZZZ ball;
 
-
-
-        private void Start()
+        override public float cooldown()
         {
-
+            return 1f;
         }
 
-      
+        override public float range()
+        {
+            return 13f;
+        }
+
         public override uint damage()
         {
             return 10;
@@ -28,7 +30,7 @@ namespace PlayerScripts.boons
         {
             FIREBALLLZZZZ newBall = Instantiate(ball, position, Quaternion.identity);
             newBall.init();
-            newBall.range = range;
+            newBall.range = range();
             newBall.dmg = damage();
             newBall.attack(position, direction);
         }
