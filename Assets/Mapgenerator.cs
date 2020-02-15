@@ -27,13 +27,11 @@ public class Mapgenerator : MonoBehaviour
         int rightX = Mathf.RoundToInt(bottomRight.x);
         int rightY = Mathf.RoundToInt(bottomRight.y);
         for (int i = leftX; i < rightX+1; i++) {
-            Debug.Log("for i");
             var TileType = walkableTile;
             var Tile = walkable;
         
             for(int k = leftY; k > rightY-1; k--)
             {
-                Debug.Log("for k");
                 if (i == leftX || i == rightX || k == leftY || k == rightY)
                 {
                     TileType = nonwalkableTile;
