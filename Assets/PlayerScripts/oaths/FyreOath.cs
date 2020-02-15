@@ -1,4 +1,5 @@
 using System;
+using PlayerScripts.gods;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,6 +8,12 @@ namespace PlayerScripts.oaths
     public class FyreOath : MonoBehaviour, Oath
     {
         private bool broke;
+        private God fireyGod;
+
+        private void Start()
+        {
+            fireyGod = new FireyGod();
+        }
 
         public new string name()
         {
@@ -25,7 +32,7 @@ namespace PlayerScripts.oaths
 
         public God god()
         {
-            throw new System.NotImplementedException();
+            return fireyGod;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

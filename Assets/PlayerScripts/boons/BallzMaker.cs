@@ -1,3 +1,5 @@
+using System;
+using PlayerScripts.gods;
 using UnityEngine;
 
 namespace PlayerScripts.boons
@@ -5,10 +7,16 @@ namespace PlayerScripts.boons
     public class BallzMaker : Boon
     {
         public FIREBALLLZZZZ ball;
-        
+        private God fireyGod;
+
+        private void Start()
+        {
+            fireyGod = new FireyGod();
+        }
+
         public override God god()
         {
-            throw new System.NotImplementedException();
+            return fireyGod;
         }
 
         public override uint damage()
