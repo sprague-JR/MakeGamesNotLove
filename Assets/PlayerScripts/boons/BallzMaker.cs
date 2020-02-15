@@ -4,6 +4,8 @@ namespace PlayerScripts.boons
 {
     public class BallzMaker : Boon
     {
+        public FIREBALLLZZZZ ball;
+        
         public override God god()
         {
             throw new System.NotImplementedException();
@@ -11,17 +13,19 @@ namespace PlayerScripts.boons
 
         public override uint damage()
         {
-            throw new System.NotImplementedException();
+            return 10;
         }
 
         public override DamageType damageType()
         {
-            throw new System.NotImplementedException();
+            return DamageType.Projectile;
         }
 
         public override void attack(Vector2 position, Vector2 direction)
         {
-            throw new System.NotImplementedException();
+            FIREBALLLZZZZ newBall = Instantiate(ball, position, Quaternion.identity);
+            newBall.range = range;
+            newBall.attack(position, direction);
         }
     }
 }

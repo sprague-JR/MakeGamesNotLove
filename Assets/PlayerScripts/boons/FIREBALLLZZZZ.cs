@@ -8,7 +8,7 @@ namespace PlayerScripts.boons
         private Rigidbody2D rb;
         private Vector2 start;
         private bool isFlying;
-        private int range;
+        public float range;
 
         private void Start()
         {
@@ -22,21 +22,6 @@ namespace PlayerScripts.boons
             
             isFlying = false;
             rb.velocity = Vector2.zero;
-        }
-
-        public God god()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public uint damage()
-        {
-            return 10;
-        }
-
-        public DamageType damageType()
-        {
-            return DamageType.Projectile;
         }
 
         public void attack(Vector2 position, Vector2 direction)
