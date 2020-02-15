@@ -11,10 +11,16 @@ namespace EnemyScripts
         
         private Vector2 moveVelocity;
         private Rigidbody2D rb;
+        private Vector2 pos;
+        private const float force = 3f;
 
         private void FixedUpdate()
         {
-            rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+            rb.MovePosition(pos);
+            var position = rb.position;
+            Vector2 move = (player.rb.position - position).normalized;
+            moveVelocity = move * speed;
+            pos = position + moveVelocity * Time.fixedDeltaTime;
         }
 
         private void Start()
@@ -22,10 +28,16 @@ namespace EnemyScripts
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Update()
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            Vector2 move = (player.position - rb.position).normalized;
-            moveVelocity = move * speed;
+            if (other.collider.CompareTag($"Player"))
+            {
+                Debug.Log("CD");
+                Vector2 dir = other.GetContact(0).point - new Vector2(transform.position.x, transform.position.y);
+                dir = -dir.normalized;
+                Debug.Log(rb.position + dir*force);
+                pos = rb.position + dir*force;
+            }
         }
     }
 }
