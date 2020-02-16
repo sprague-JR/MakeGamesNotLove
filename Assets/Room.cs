@@ -75,7 +75,6 @@ public class Corridoor
 
 		int ax = 0;
 		int bx = 0;
-		Debug.Log("a over b");
 
 		if (ay - by > 5)
 		{

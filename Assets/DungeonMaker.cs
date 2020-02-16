@@ -383,8 +383,6 @@ public class DungeonMaker : MonoBehaviour
 
 		//find suitable location for boon
 
-		Debug.Log(start.connected.Count);
-		Debug.Log(start.corridoors.Count);
 		Corridoor c = start.corridoors[0];
 		//start is a leaf node so there is only one corridoor
 

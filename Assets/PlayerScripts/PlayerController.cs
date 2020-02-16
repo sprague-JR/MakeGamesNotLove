@@ -23,6 +23,9 @@ namespace PlayerScripts
         private Oath runnyOath;
         private bool hasMoved;
 
+
+		private Animator myAnimator;
+
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -34,6 +37,7 @@ namespace PlayerScripts
             godManager = GetComponent<GodManager>();
             godManager.init();
             runnyOath = GameObject.Find("RunnyGod").GetComponentInChildren<Oath>();
+			myAnimator = GetComponentInChildren<Animator>();
         }
 
         // Update is called once per frame
@@ -42,6 +46,10 @@ namespace PlayerScripts
             // get horizontal and vertical inputs and calculate the corresponding speed
             moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             moveVelocity = moveInput * speed;
+
+			myAnimator.SetFloat("Y", Input.GetAxisRaw("Vertical"));
+			myAnimator.SetFloat("X", Input.GetAxisRaw("Horizontal"));
+			
 
             if (moveInput != Vector2.zero)
             {
