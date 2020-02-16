@@ -18,23 +18,19 @@ namespace PlayerScripts
             isDead = true; 
         }
 
+        public void takeDmg(uint dmg)
+        {
+            health -= (int) dmg;
+            if (health <= 0)
+            {
+                itsaDeadBoi();
+                Debug.Log("Ya dead ya cunt");
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag($"Enemy"))
-            {
-                Enemy enemy = other.gameObject.GetComponent<Enemy>();
-                health -= (int)enemy.dmg();
-                if (health == 0)
-                {
-                    itsaDeadBoi();
-                    Debug.Log("Ya dead ya cunt");
-                }
-            }
-            else
-            {
-                controller.interactTag = other.tag;
-            }
-            
+            controller.interactTag = other.tag;
         }
 
         private void OnTriggerExit2D(Collider2D collision)

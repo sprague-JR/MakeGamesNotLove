@@ -11,6 +11,7 @@ namespace WeaponScripts
         
         private float gizmoRange = 0f;
         private Vector2 pos;
+        public bool isDone;
 
         override public float cooldown()
         {
@@ -35,6 +36,7 @@ namespace WeaponScripts
         override public void attack(Vector2 position, Vector2 direction)
         {
             pos = position;
+            isDone = false;
             //start a coroutine which will grow a circle collider arround the player
             StartCoroutine("AoeCast");
         }
@@ -74,6 +76,7 @@ namespace WeaponScripts
                 yield return null;
             }
 
+            isDone = true;
             gizmoRange = 0.0f;
         }
 
