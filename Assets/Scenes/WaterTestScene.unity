@@ -729,7 +729,7 @@ PrefabInstance:
     - target: {fileID: 7614364687909266064, guid: b6c562fff52cc454ca6d3bc20a736761,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player(Clone)
       objectReference: {fileID: 0}
     - target: {fileID: 7614364687909266156, guid: b6c562fff52cc454ca6d3bc20a736761,
         type: 3}
@@ -2534,7 +2534,7 @@ PrefabInstance:
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
@@ -11693,7 +11693,7 @@ PrefabInstance:
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117729228389096484, guid: 92ee65984211a0ee68af11ca3ffe22d4,
         type: 3}

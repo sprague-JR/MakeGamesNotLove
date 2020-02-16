@@ -15,6 +15,7 @@ namespace EnemyScripts
 
         public override void takeDmg(uint dmg)
         {
+            Debug.Log(dmg);
             health -= dmg;
             if (health == 0)
             {

@@ -16,7 +16,7 @@ public class ScnManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player(Clone)").GetComponent<Player>();
         deathUI = GameObject.Find("DeathUI");
         murderOath = GameObject.Find("MurderousGod").GetComponentInChildren<MurderOath>();
 
