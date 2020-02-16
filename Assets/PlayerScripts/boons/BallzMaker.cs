@@ -5,11 +5,11 @@ namespace PlayerScripts.boons
     public class BallzMaker : Boon
     {
         public FIREBALLLZZZZ ball;
-        public float speed = 10f;
+        public float speed = 8f;
 
         override public float cooldown()
         {
-            return 0.4f;
+            return 0.5f;
         }
 
         override public float range()
@@ -17,9 +17,9 @@ namespace PlayerScripts.boons
             return 13f;
         }
 
-        public override uint damage()
+        public override int damage()
         {
-            return 1;
+            return 6;
         }
 
         public override DamageType damageType()

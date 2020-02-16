@@ -6,18 +6,18 @@ namespace EnemyScripts
 {
     public class MeleeEnemy : Enemy
     {
-        public uint health = 10;
+        public int health = 10;
 
-        public override uint dmg()
+        public override int dmg()
         {
             return 1;
         }
 
-        public override void takeDmg(uint dmg)
+        public override void takeDmg(int dmg)
         {
             Debug.Log(dmg);
             health -= dmg;
-            if (health == 0)
+            if (health < 0)
             {
                 GameObject.Destroy(this.gameObject);
             }

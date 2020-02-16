@@ -10,7 +10,7 @@ namespace PlayerScripts.boons
         private Vector2 start;
         private bool isFlying;
         public float range;
-        public uint dmg;
+        public int dmg;
 
         public void init()
         {

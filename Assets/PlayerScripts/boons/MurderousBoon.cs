@@ -8,12 +8,12 @@ namespace PlayerScripts.boons
     {
         private void Start()
         {
-            speed = 10f;
+            speed = 15f;
         }
 
         override public float cooldown()
         {
-            return 0.2f;
+            return 0.15f;
         }
 
         override public float range()
@@ -21,9 +21,9 @@ namespace PlayerScripts.boons
             return 15f;
         }
 
-        override public uint damage()
+        override public int damage()
         {
-            return 1;
+            return 3;
         }
     }
 }

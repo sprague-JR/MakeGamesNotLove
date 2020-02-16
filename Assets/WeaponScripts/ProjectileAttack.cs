@@ -18,7 +18,7 @@ namespace WeaponScripts
             return 10;
         }
 
-        override public uint damage()
+        override public int damage()
         {
             return 4;
         }

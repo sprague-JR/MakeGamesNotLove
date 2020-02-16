@@ -19,7 +19,7 @@ namespace PlayerScripts
             isDead = true; 
         }
 
-        public void takeDmg(uint dmg)
+        public void takeDmg(int dmg)
         {
             health -= (int) dmg;
             if (health <= 0)

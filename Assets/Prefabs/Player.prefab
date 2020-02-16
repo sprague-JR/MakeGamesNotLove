@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
-  speed: 10
+  speed: 15
 --- !u!1 &888766779
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
-  speed: 10
+  speed: 9
 --- !u!1 &1680402741
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +890,7 @@ MonoBehaviour:
   health: 5
   controller: {fileID: 7614364687909266067}
   isDead: 0
+  nextLevel: 0
 --- !u!114 &777577359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +973,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1049871633
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -7747900552136898861, guid: 5a202e1778b0bf04587d6c94f107a630,
     type: 3}
