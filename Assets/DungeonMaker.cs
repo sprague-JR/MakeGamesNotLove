@@ -36,14 +36,14 @@ public class DungeonMaker : MonoBehaviour
 
 
 			Vector2 tl = new Vector2(
-				(dn.room.gridLoc.x * 40) + dn.room.offset.x,
-				(dn.room.gridLoc.y * 40) + dn.room.offset.y + dn.room.dimensions.y
+				(dn.room.gridLoc.x * 25) + dn.room.offset.x,
+				(dn.room.gridLoc.y * 25) + dn.room.offset.y + dn.room.dimensions.y
 				);
 
 
 			Vector2 br = new Vector2(
-				(dn.room.gridLoc.x * 40) + dn.room.offset.x + dn.room.dimensions.x,
-				(dn.room.gridLoc.y * 40) + dn.room.offset.y
+				(dn.room.gridLoc.x * 25) + dn.room.offset.x + dn.room.dimensions.x,
+				(dn.room.gridLoc.y * 25) + dn.room.offset.y
 				);
 
 			mg.createmap(tl, br);
@@ -70,7 +70,7 @@ public class DungeonMaker : MonoBehaviour
 
 		}
 
-		mg.Wallify(x * 40,y * 40);
+		mg.Wallify(x * 25,y * 25);
 
 		populate_start();
 		//populate_end();
@@ -370,8 +370,8 @@ public class DungeonMaker : MonoBehaviour
 		GameObject player_instance = Instantiate(player);
 
 		player_instance.transform.position = new Vector3(
-			start.room.gridLoc.x * 40 + start.room.offset.x + (start.room.dimensions.x / 2),
-			start.room.gridLoc.y * 40 + start.room.offset.y + (start.room.dimensions.y / 2),
+			start.room.gridLoc.x * 25 + start.room.offset.x + (start.room.dimensions.x / 2),
+			start.room.gridLoc.y * 25 + start.room.offset.y + (start.room.dimensions.y / 2),
 			0);
 
 		transform.parent = player_instance.transform;
@@ -383,28 +383,30 @@ public class DungeonMaker : MonoBehaviour
 
 		//find suitable location for boon
 
+		Debug.Log(start.connected.Count);
+		Debug.Log(start.corridoors.Count);
 		Corridoor c = start.corridoors[0];
 		//start is a leaf node so there is only one corridoor
 
-		Vector2Int cor_loc = c.a.y == (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y ? c.a: c.b;
+		Vector2Int cor_loc = c.a.y == (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y ? c.a: c.b;
 
 
 
 		int boon_x = 0;
-		if (cor_loc.y == (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y)
+		if (cor_loc.y == (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y)
 		{
-			boon_x = Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 40) + start.room.offset.x) >
-			Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x) ?
-			Random.Range((start.room.gridLoc.x * 40) + start.room.offset.x + 2, cor_loc.x - 2) :
-			Random.Range(cor_loc.x + 2, (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x - 2);
+			boon_x = Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 25) + start.room.offset.x) >
+			Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 25) + start.room.offset.x + start.room.dimensions.x) ?
+			Random.Range((start.room.gridLoc.x * 25) + start.room.offset.x + 2, cor_loc.x - 2) :
+			Random.Range(cor_loc.x + 2, (start.room.gridLoc.x * 25) + start.room.offset.x + start.room.dimensions.x - 2);
 
 		}
 		else
 		{
-			boon_x = Random.Range((start.room.gridLoc.x * 40) + start.room.offset.x + 2, (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x - 2);
+			boon_x = Random.Range((start.room.gridLoc.x * 25) + start.room.offset.x + 2, (start.room.gridLoc.x * 25) + start.room.offset.x + start.room.dimensions.x - 2);
 		}
 
-		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y);
+		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
 
 
 
@@ -419,8 +421,8 @@ public class DungeonMaker : MonoBehaviour
 		GameObject exit_instance = Instantiate(exit);
 
 		exit_instance.transform.position = new Vector3(
-			end.room.gridLoc.x * 40 + end.room.offset.x + (end.room.dimensions.x / 2),
-			end.room.gridLoc.y * 40 + end.room.offset.y + (end.room.dimensions.y / 2),
+			end.room.gridLoc.x * 25 + end.room.offset.x + (end.room.dimensions.x / 2),
+			end.room.gridLoc.y * 25 + end.room.offset.y + (end.room.dimensions.y / 2),
 			0);
 	}
 
@@ -455,29 +457,30 @@ public class DungeonMaker : MonoBehaviour
 				{
 					//spawn boon
 
+					Debug.Log(room.corridoors.Count);
 					Corridoor c = room.corridoors[0];
 					//start is a leaf node so there is only one corridoor
 
-					Vector2Int cor_loc = c.a.y == (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y ? c.a : c.b;
+					Vector2Int cor_loc = c.a.y == (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y ? c.a : c.b;
 
 
 
 					int boon_x = 0;
-					if (cor_loc.y == (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y)
+					if (cor_loc.y == (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y)
 					{
-						boon_x = Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 40) + room.room.offset.x) >
-						Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x) ?
-						Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 2, cor_loc.x - 2) :
-						Random.Range(cor_loc.x + 2, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 2);
+						boon_x = Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 25) + room.room.offset.x) >
+						Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x) ?
+						Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 2, cor_loc.x - 2) :
+						Random.Range(cor_loc.x + 2, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 2);
 
 					}
 					else
 					{
-						boon_x = Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 2, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 2);
+						boon_x = Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 2, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 2);
 					}
 					GameObject start_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
 
-					start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y);
+					start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
 				}
 				else
 				{
@@ -487,8 +490,8 @@ public class DungeonMaker : MonoBehaviour
 						GameObject temp = GameObject.Instantiate(enemies[Mathf.FloorToInt(Random.Range(0, enemies.Length - 0.1f))]);
 
 						temp.transform.position = new Vector3(
-								Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 1, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 1),
-								Random.Range((room.room.gridLoc.y * 40) + room.room.offset.y + 1, (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y - 1),
+								Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 1, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 1),
+								Random.Range((room.room.gridLoc.y * 25) + room.room.offset.y + 1, (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y - 1),
 						0);
 					}
 					//spawn tonnes of enemies
@@ -515,8 +518,8 @@ public class DungeonMaker : MonoBehaviour
 					GameObject temp = GameObject.Instantiate(enemies[Mathf.RoundToInt(Random.Range(0, enemies.Length - 1))]);
 
 					temp.transform.position = new Vector3(
-							Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 1, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 1),
-							Random.Range((room.room.gridLoc.y * 40) + room.room.offset.y + 1, (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y - 1),
+							Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 1, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 1),
+							Random.Range((room.room.gridLoc.y * 25) + room.room.offset.y + 1, (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y - 1),
 					0);
 				}
 				
