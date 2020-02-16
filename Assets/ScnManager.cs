@@ -9,19 +9,19 @@ using PlayerScripts.oaths;
 public class ScnManager : MonoBehaviour
 {
     public static bool isPaused = false;
-    public GameObject deathUI;
 
+    private GameObject deathUI;
     private Player player;
     private MurderOath murderOath;
     private int level;
 
     private void Start()
     {
-        player = GameObject.Find("Player(Clone)").GetComponent<Player>();
         deathUI = GameObject.Find("DeathUI");
-        murderOath = GameObject.Find("MurderousGod").GetComponentInChildren<MurderOath>();
-
         deathUI.SetActive(false);
+       
+
+        
 
         if(PlayerPrefs.GetInt("Level", 0) == 0)
         {
@@ -37,6 +37,14 @@ public class ScnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            if (player == null) return;
+            murderOath = GameObject.Find("MurderousGod").GetComponentInChildren<MurderOath>();
+        }
+
+
         if (player.isDead)
         {
             playerDied();
@@ -49,6 +57,7 @@ public class ScnManager : MonoBehaviour
 
     void playerDied()
     {
+
         deathUI.SetActive(true);
         isPaused = true;
     }
@@ -56,6 +65,7 @@ public class ScnManager : MonoBehaviour
     public void ReplayGame()
     {
         Debug.Log("Replay");
+        PlayerPrefs.SetInt("Level", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
