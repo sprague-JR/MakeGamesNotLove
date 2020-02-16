@@ -24,7 +24,6 @@ namespace PlayerScripts.oaths
         public void forceBreak(bool b)
         {
             broke = b;
-            Debug.Log(b);
         }
     }
 }

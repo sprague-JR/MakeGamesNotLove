@@ -13,6 +13,7 @@ public class ScnManager : MonoBehaviour
 
     private Player player;
     private MurderOath murderOath;
+    private int level;
 
     private void Start()
     {
@@ -21,6 +22,16 @@ public class ScnManager : MonoBehaviour
         murderOath = GameObject.Find("MurderousGod").GetComponentInChildren<MurderOath>();
 
         deathUI.SetActive(false);
+
+        if(PlayerPrefs.GetInt("Level", 0) == 0)
+        {
+            level = 0;
+        }
+        else
+        {
+            level = PlayerPrefs.GetInt("Level");
+        }
+        
     }
 
     // Update is called once per frame
@@ -29,6 +40,10 @@ public class ScnManager : MonoBehaviour
         if (player.isDead)
         {
             playerDied();
+        }
+        if (player.nextLevel)
+        {
+            NextLevel();
         }
     }
 
@@ -40,18 +55,32 @@ public class ScnManager : MonoBehaviour
 
     public void ReplayGame()
     {
+        Debug.Log("Replay");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void NextLevel()
     {
         murderOath.countEnemies();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Debug.Log(level);
+        if (level == 2)
+        {
+            Debug.Log("Finish go home");
+            MainMenu();
+        }
+        level++;
+        PlayerPrefs.SetInt("Level", level);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()
     {
         Debug.Log("aaaah coooome ooooon");
         Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Mainmenu");
     }
 }
