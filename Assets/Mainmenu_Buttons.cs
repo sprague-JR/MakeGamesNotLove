@@ -8,6 +8,7 @@ public class Mainmenu_Buttons : MonoBehaviour
 
     public void change_Scene(string newscene)
     {
+        PlayerPrefs.SetInt("Level", 0);
         SceneManager.LoadScene(newscene);
     }
     public void Quit()

@@ -9,6 +9,7 @@ namespace PlayerScripts
         public int health;
         public PlayerController controller;
         public bool isDead=false;
+        public bool nextLevel = false;
         
         private Boon boon;
 
@@ -31,6 +32,10 @@ namespace PlayerScripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             controller.interactTag = other.tag;
+            if(other.tag == "Exit")
+            {
+                nextLevel = true;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -38,7 +43,8 @@ namespace PlayerScripts
             if (collision.tag.Contains("Totem"))
             {
                 controller.canInteract = false;
-            }
+            } 
+
         }
     }
 }
