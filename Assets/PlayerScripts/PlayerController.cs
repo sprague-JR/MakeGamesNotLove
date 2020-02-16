@@ -62,7 +62,6 @@ namespace PlayerScripts
 
             if (moveInput != Vector2.zero)
             {
-                direction = currentAim.normalized;
                 hasMoved = true;
             }
             else
@@ -71,6 +70,11 @@ namespace PlayerScripts
                 {
                     runnyOath.forceBreak(true);
                 }
+            }
+
+            if (currentAim != Vector2.zero)
+            {
+                direction = currentAim.normalized;
             }
 
             if (Mathf.Abs(Input.GetAxisRaw("Fire1")) == 1f)
