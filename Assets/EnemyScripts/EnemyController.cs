@@ -18,7 +18,7 @@ namespace EnemyScripts
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
+            player = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
         }
 
 

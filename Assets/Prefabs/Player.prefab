@@ -259,7 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8f37dabf460644ea2869408a432bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
+  ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
+  speed: 10
 --- !u!1 &888766779
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab1d21a99b9bf146bcdea385ca74775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDone: 0
 --- !u!1 &994915677
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
+  speed: 10
 --- !u!1 &1392661214
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
+  speed: 10
 --- !u!1 &1680402741
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a128fd555474f8347bf70ea3db23b3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDone: 0
 --- !u!1 &1858360389
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  canInteract: 0
+  interactTag: 
   rb: {fileID: 0}
 --- !u!61 &7614364687909266156
 BoxCollider2D:
@@ -895,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd53221cde26e7e4f8e705c5669bca2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notPacifist: 0
 --- !u!1 &7614364688171486519
 GameObject:
   m_ObjectHideFlags: 0
