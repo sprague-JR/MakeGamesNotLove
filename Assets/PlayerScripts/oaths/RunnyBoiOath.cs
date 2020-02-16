@@ -4,7 +4,7 @@ namespace PlayerScripts.oaths
 {
     public class RunnyBoiOath : MonoBehaviour, Oath
     {
-        private bool broke;
+        private bool broke = true;
         
         public new string name()
         {

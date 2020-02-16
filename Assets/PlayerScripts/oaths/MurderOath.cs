@@ -5,7 +5,7 @@ namespace PlayerScripts.oaths
     public class MurderOath : MonoBehaviour, Oath
     {
 
-        private bool broke;
+        private bool broke = true;
 
         public GameObject[] enemies;
 

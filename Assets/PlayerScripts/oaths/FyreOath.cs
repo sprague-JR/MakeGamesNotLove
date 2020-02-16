@@ -7,7 +7,7 @@ namespace PlayerScripts.oaths
 {
     public class FyreOath : MonoBehaviour, Oath
     {
-        private bool broke;
+        private bool broke = true;
 
         public new string name()
         {
