@@ -61,6 +61,7 @@ namespace EnemyScripts
         {
             if (other.CompareTag("Player"))
             {
+                attack.attackPlayer = true;
                 attack.attack(rb.position, Vector2.zero);
                 detonating = true;
                 audioSource.Play();

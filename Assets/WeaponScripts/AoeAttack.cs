@@ -13,6 +13,7 @@ namespace WeaponScripts
         private Vector2 pos;
         public bool isDone;
         public ParticleSystem ps;
+        public bool attackPlayer = false;
 
         private void Start()
         {
@@ -28,12 +29,12 @@ namespace WeaponScripts
 
         override public float range()
         {
-            return 2f;
+            return 4f;
         }
 
         override public int damage()
         {
-            return 5;
+            return 1;
         }
 
         override public DamageType damageType()
@@ -55,7 +56,16 @@ namespace WeaponScripts
         IEnumerator AoeCast()
         {
             //get layer mask for overlapcircle cast
-            LayerMask lm = LayerMask.GetMask("Enemy");
+            LayerMask lm;
+            if (attackPlayer)
+            {
+                Debug.Log("ATTACK PLAYER");
+                lm = LayerMask.GetMask("Default");
+            }
+            else
+            {
+                lm = LayerMask.GetMask("Enemy");
+            }
             List<GameObject> collidedObj = new List<GameObject>();
 
             for (float i = 0; i <= range(); i += 0.1f)
@@ -81,7 +91,15 @@ namespace WeaponScripts
                         collidedObj.Add(col.gameObject);
                         
                         //add the inflict damage method here
-                        col.gameObject.GetComponent<Enemy>().takeDmg(damage());
+                        if (attackPlayer)
+                        {
+                            Debug.Log("ATTACK");
+                            col.gameObject.GetComponent<Player>().takeDmg(damage());
+                        }
+                        else
+                        {
+                            col.gameObject.GetComponent<Enemy>().takeDmg(damage());
+                        }
                     }
                 }
                 yield return null;
