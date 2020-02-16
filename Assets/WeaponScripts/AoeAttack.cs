@@ -12,6 +12,14 @@ namespace WeaponScripts
         private float gizmoRange = 0f;
         private Vector2 pos;
         public bool isDone;
+        public ParticleSystem ps;
+
+        private void Start()
+        {
+            ps = GetComponent<ParticleSystem>();
+            ps.GetComponent<Renderer>().sortingLayerName = "Player";
+            
+        }
 
         override public float cooldown()
         {
@@ -37,6 +45,9 @@ namespace WeaponScripts
         {
             pos = position;
             isDone = false;
+
+            ps.Play();
+
             //start a coroutine which will grow a circle collider arround the player
             StartCoroutine("AoeCast");
         }
