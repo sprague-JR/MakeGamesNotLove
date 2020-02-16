@@ -8,15 +8,15 @@ namespace EnemyScripts
     public class MeleeEnemy : Enemy
     {
         public int health = 10;
-        private SpriteRenderer renderer;
+        private SpriteRenderer spriteRenderer;
         public Sprite coolGuy;
 
         private void Start()
         {
-            renderer = GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             if (Random.Range(0.0f, 10.0f) >= 9.0f)
             {
-                renderer.sprite = coolGuy;
+                spriteRenderer.sprite = coolGuy;
             }
         }
 

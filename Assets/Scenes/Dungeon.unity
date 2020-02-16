@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableTile: {fileID: 11400000, guid: 3d139441d6489e74fb86d2c50dbbf02e, type: 2}
-  nonwalkableTile: {fileID: 0}
+  nonwalkableTile: {fileID: 11400000, guid: d5a9e77e8910cfc4cbddd104b1d4d5e9, type: 2}
   waterTile: {fileID: 11400000, guid: 9c5f8d2a48ac8634ea94a568c6857191, type: 2}
 --- !u!1 &410805050
 GameObject:
