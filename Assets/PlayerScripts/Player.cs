@@ -35,7 +35,7 @@ namespace PlayerScripts
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.CompareTag($"FieryTotem"))
+            if (collision.tag.Contains("Totem"))
             {
                 controller.canInteract = false;
             }
