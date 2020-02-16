@@ -29,13 +29,17 @@ namespace PlayerScripts.oaths
             broke = b;
         }
 
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            
             if (collision.gameObject.CompareTag("Water"))
             {
-                Debug.Log("Splish Splosh oh my gosh");
+                Debug.Log("Splish Splosh");
                 broke = true;
             }
         }
+        
+        
     }
 }
