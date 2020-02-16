@@ -38,7 +38,7 @@ namespace PlayerScripts.boons
             rb.velocity = direction.normalized * speed;
             start = position;
             isFlying = true;
-            audioSource.Play();
+            audioSource.PlayOneShot(audioSource.clip);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
