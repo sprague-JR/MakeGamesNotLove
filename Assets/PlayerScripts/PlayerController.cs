@@ -75,18 +75,22 @@ namespace PlayerScripts
 
             if (Mathf.Abs(Input.GetAxisRaw("Fire1")) == 1f)
             {
+                Debug.Log("Murderous Attack");
                 godManager.attack(3, transform.position, direction);
             }
             else if(Mathf.Abs(Input.GetAxisRaw("Fire2")) == 1f)
             {
+                Debug.Log("Pacifist");
                 godManager.attack(1, transform.position, direction);
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Fire3")) == 1f)
             {
+                Debug.Log("runny");
                 godManager.attack(2, transform.position, direction);
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Fire4")) == 1f)
             {
+                Debug.Log("fireballz");
                 godManager.attack(0, transform.position, direction);
             }
 
