@@ -10,6 +10,8 @@ public class ScnManager : MonoBehaviour
 {
     public static bool isPaused = false;
 
+    private PlayerController pc;
+
     private GameObject deathUI;
     private Player player;
     private MurderOath murderOath;
@@ -57,7 +59,8 @@ public class ScnManager : MonoBehaviour
 
     void playerDied()
     {
-
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        pc.enabled = false;
         deathUI.SetActive(true);
         isPaused = true;
     }
