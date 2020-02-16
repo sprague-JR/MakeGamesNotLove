@@ -47,7 +47,7 @@ namespace WeaponScripts
             isDone = false;
 
             ps.Play();
-
+            ps.startSize = range() * 1.5f;
             //start a coroutine which will grow a circle collider arround the player
             StartCoroutine("AoeCast");
         }
