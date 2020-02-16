@@ -18,6 +18,8 @@ public class DungeonMaker : MonoBehaviour
 
 	public GameObject player;
 
+	public GameObject exit;
+
 
 	public Mapgenerator mg;
 
@@ -71,7 +73,7 @@ public class DungeonMaker : MonoBehaviour
 		mg.Wallify(x * 40,y * 40);
 
 		populate_start();
-		populate_end();
+		//populate_end();
 
 		populate_leaf_room();
 
@@ -414,6 +416,12 @@ public class DungeonMaker : MonoBehaviour
 	public void populate_end()
 	{
 
+		GameObject exit_instance = Instantiate(exit);
+
+		exit_instance.transform.position = new Vector3(
+			end.room.gridLoc.x * 40 + end.room.offset.x + (end.room.dimensions.x / 2),
+			end.room.gridLoc.y * 40 + end.room.offset.y + (end.room.dimensions.y / 2),
+			0);
 	}
 
 
@@ -425,6 +433,8 @@ public class DungeonMaker : MonoBehaviour
 
 
 
+
+
 	}
 
 
@@ -433,6 +443,60 @@ public class DungeonMaker : MonoBehaviour
 	{
 
 
+		foreach(DungeonNode room in rooms)
+		{
+
+			if(room.connected.Count == 1 && room != start && room != end)
+			{
+
+				//leaf room, time to go crazy
+
+				if(Random.value < 0.3f)
+				{
+					//spawn boon
+
+					Corridoor c = room.corridoors[0];
+					//start is a leaf node so there is only one corridoor
+
+					Vector2Int cor_loc = c.a.y == (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y ? c.a : c.b;
+
+
+
+					int boon_x = 0;
+					if (cor_loc.y == (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y)
+					{
+						boon_x = Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 40) + room.room.offset.x) >
+						Mathf.Abs(cor_loc.x - (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x) ?
+						Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 2, cor_loc.x - 2) :
+						Random.Range(cor_loc.x + 2, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 2);
+
+					}
+					else
+					{
+						boon_x = Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 2, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 2);
+					}
+					GameObject start_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
+
+					start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y);
+				}
+				else
+				{
+
+					for (int i = 0; i < Random.Range(15, 20); i++)
+					{
+						GameObject temp = GameObject.Instantiate(enemies[Mathf.FloorToInt(Random.Range(0, enemies.Length - 0.1f))]);
+
+						temp.transform.position = new Vector3(
+								Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 1, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 1),
+								Random.Range((room.room.gridLoc.y * 40) + room.room.offset.y + 1, (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y - 1),
+						0);
+					}
+					//spawn tonnes of enemies
+				}
+
+
+			}
+		}
 	}
 
 
@@ -440,7 +504,25 @@ public class DungeonMaker : MonoBehaviour
 	public void populate_non_leaf_room()
 	{
 
+		foreach(DungeonNode room in rooms)
+		{
+			if(room.connected.Count > 1)
+			{
+				//not a leaf node so don't go crazy;
 
+				for (int i = 0; i < Random.Range(3, 10); i++)
+				{
+					GameObject temp = GameObject.Instantiate(enemies[Mathf.RoundToInt(Random.Range(0, enemies.Length - 1))]);
+
+					temp.transform.position = new Vector3(
+							Random.Range((room.room.gridLoc.x * 40) + room.room.offset.x + 1, (room.room.gridLoc.x * 40) + room.room.offset.x + room.room.dimensions.x - 1),
+							Random.Range((room.room.gridLoc.y * 40) + room.room.offset.y + 1, (room.room.gridLoc.y * 40) + room.room.offset.y + room.room.dimensions.y - 1),
+					0);
+				}
+				
+				
+			}
+		}
 	}
 }
 
