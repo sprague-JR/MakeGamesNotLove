@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerScripts;
@@ -15,6 +16,7 @@ namespace PlayerScripts
 
         private Vector2 moveInput;
         private Vector2 direction;
+        private Vector2 currentAim;
         private Vector2 moveVelocity;
 
         private Boon boon;
@@ -23,11 +25,13 @@ namespace PlayerScripts
         private Oath runnyOath;
         private bool hasMoved;
 
-
 		private Animator myAnimator;
 
         [HideInInspector]
         public Rigidbody2D rb;
+
+        private static readonly int y = Animator.StringToHash("Y");
+        private static readonly int x = Animator.StringToHash("X");
 
         void Start()
         {
@@ -38,22 +42,25 @@ namespace PlayerScripts
             godManager.init();
             runnyOath = GameObject.Find("RunnyGod").GetComponentInChildren<Oath>();
 			myAnimator = GetComponentInChildren<Animator>();
+            moveInput = Vector2.zero;
         }
 
         // Update is called once per frame
         void Update()
         {
             // get horizontal and vertical inputs and calculate the corresponding speed
-            moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            moveInput.x = Input.GetAxis("Horizontal");
+            moveInput.y = Input.GetAxis("Vertical");
+            currentAim.x = Input.GetAxis("AimHoriz");
+            currentAim.y = Input.GetAxis("AimVirt");
             moveVelocity = moveInput * speed;
 
-			myAnimator.SetFloat("Y", Input.GetAxisRaw("Vertical"));
-			myAnimator.SetFloat("X", Input.GetAxisRaw("Horizontal"));
-			
+			myAnimator.SetFloat(y, Input.GetAxisRaw("Vertical"));
+			myAnimator.SetFloat(x, Input.GetAxisRaw("Horizontal"));
 
-            if (moveInput != Vector2.zero)
+            if (currentAim != Vector2.zero)
             {
-                direction = moveInput;
+                direction = currentAim.normalized;
                 hasMoved = true;
             }
             else
@@ -64,19 +71,19 @@ namespace PlayerScripts
                 }
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Mathf.Abs(Input.GetAxisRaw("Fire1")) == 1f)
             {
                 godManager.attack(3, transform.position, direction);
             }
-            else if(Input.GetButtonDown("Fire2"))
+            else if(Mathf.Abs(Input.GetAxisRaw("Fire2")) == 1f)
             {
                 godManager.attack(1, transform.position, direction);
             }
-            else if (Input.GetButtonDown("Fire3"))
+            else if (Mathf.Abs(Input.GetAxisRaw("Fire3")) == 1f)
             {
                 godManager.attack(2, transform.position, direction);
             }
-            else if (Input.GetButtonDown("Fire4"))
+            else if (Mathf.Abs(Input.GetAxisRaw("Fire4")) == 1f)
             {
                 godManager.attack(0, transform.position, direction);
             }

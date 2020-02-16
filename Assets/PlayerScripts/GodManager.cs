@@ -1,7 +1,8 @@
 ﻿using System;
 using PlayerScripts.gods;
-using PlayerScripts.oaths;
 using UnityEngine;
+using UnityEngine.UI;
+using PlayerScripts.oaths;
 
 namespace PlayerScripts
 {
@@ -9,6 +10,7 @@ namespace PlayerScripts
     {
         public bool notPacifist;
 
+        private Image[] totems;
         private God[] gods;
         private bool canAttack;
 
@@ -21,16 +23,24 @@ namespace PlayerScripts
             {
                 gods[i] = godSelector.transform.GetChild(i).GetComponent<God>();
             }
-           
+
+            totems = new Image[godSelector.transform.childCount];
+            totems = GameObject.Find("Totem").GetComponentsInChildren<Image>();
+            foreach(Image im in totems)
+            {
+                im.color = Color.grey;
+            }
         }
 
         public void enableGods(int index)
         {
+            totems[index].color = Color.white;
             gods[index].oath().forceBreak(false);
         }
 
         public void disableGod(int index)
         {
+            totems[index].color = Color.grey;
             gods[index].oath().forceBreak(true);
         }
 

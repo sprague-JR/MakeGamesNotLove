@@ -1,12 +1,24 @@
 using System;
 using PlayerScripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace EnemyScripts
 {
     public class MeleeEnemy : Enemy
     {
         public int health = 10;
+        private SpriteRenderer spriteRenderer;
+        public Sprite coolGuy;
+
+        private void Start()
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (Random.Range(0.0f, 100.0f) <= 1.0f)
+            {
+                spriteRenderer.sprite = coolGuy;
+            }
+        }
 
         public override int dmg()
         {
