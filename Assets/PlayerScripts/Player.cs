@@ -30,6 +30,19 @@ namespace PlayerScripts
                     Debug.Log("Ya dead ya cunt");
                 }
             }
+            else
+            {
+                controller.interactTag = other.tag;
+            }
+            
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag($"FieryTotem"))
+            {
+                controller.canInteract = false;
+            }
         }
     }
 }

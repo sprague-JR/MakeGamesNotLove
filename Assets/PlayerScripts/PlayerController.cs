@@ -10,6 +10,8 @@ namespace PlayerScripts
     public class PlayerController : MonoBehaviour
     {
         public float speed = 10f;
+        public bool canInteract;
+        public string interactTag;
 
         private Vector2 moveInput;
         private Vector2 direction;
@@ -20,6 +22,7 @@ namespace PlayerScripts
         private GodManager godManager;
         private Oath runnyOath;
         private bool hasMoved;
+
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -39,6 +42,7 @@ namespace PlayerScripts
             // get horizontal and vertical inputs and calculate the corresponding speed
             moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             moveVelocity = moveInput * speed;
+
             if (moveInput != Vector2.zero)
             {
                 direction = moveInput;
@@ -67,6 +71,32 @@ namespace PlayerScripts
             else if (Input.GetButtonDown("Fire4"))
             {
                 godManager.attack(0, transform.position, direction);
+            }
+
+            //interact with totems to enable their boons 
+            if (Input.GetButtonDown("Interact"))
+            {
+                switch (interactTag)
+                {
+                    case "FieryTotem":
+                        Debug.Log("FieryToteeeeem");
+                        godManager.enableGods(0);
+                        break;
+                    case "PacifistTotem":
+                        Debug.Log("pacifist");
+                        godManager.enableGods(1);
+                        break;
+                    case "RunnyTotem":
+                        Debug.Log("runny");
+                        godManager.enableGods(2);
+                        break;
+                    case "MurderTotem":
+                        Debug.Log("murder");
+                        godManager.enableGods(3);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

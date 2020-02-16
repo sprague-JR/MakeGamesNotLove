@@ -7,6 +7,10 @@ TagManager:
   - Button
   - Enemy
   - Water
+  - FieryTotem
+  - RunnyTotem
+  - PacifistTotem
+  - MurderTotem
   layers:
   - Default
   - TransparentFX
