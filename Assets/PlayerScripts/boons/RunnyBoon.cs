@@ -7,7 +7,7 @@ namespace PlayerScripts.boons
     {
         override public float cooldown()
         {
-            return 1f;
+            return 0.7f;
         }
 
         override public float range()

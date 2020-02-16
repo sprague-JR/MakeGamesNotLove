@@ -7,11 +7,14 @@ namespace PlayerScripts
 {
     public class GodManager: MonoBehaviour
     {
-        private God[] gods;
         public bool notPacifist;
+
+        private God[] gods;
+        private bool canAttack;
 
         public void init()
         {
+            canAttack = true;
             GameObject godSelector = GameObject.Find("GodSelect");
             gods = new God[godSelector.transform.childCount];
             for (int i = 0; i < godSelector.transform.childCount; i++)
@@ -32,9 +35,11 @@ namespace PlayerScripts
 
         public void attack(int index, Vector2 position, Vector2 direction)
         {
-            if (!gods[index].oath().hasBeenBroken())
+            if (!gods[index].oath().hasBeenBroken() && canAttack)
             {
+                canAttack = false;
                 gods[index].boon().attack(position, direction);
+                Invoke("resetCooldown", gods[index].boon().cooldown());
             }
 
             if (notPacifist) return;
@@ -45,6 +50,11 @@ namespace PlayerScripts
                 notPacifist = true;
                 break;
             }
+        }
+
+        void resetCooldown()
+        {
+            canAttack = true;
         }
     }
 }
