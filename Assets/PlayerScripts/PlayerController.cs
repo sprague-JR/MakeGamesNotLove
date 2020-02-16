@@ -24,6 +24,7 @@ namespace PlayerScripts
         private GodManager godManager;
         private Oath runnyOath;
         private bool hasMoved;
+        private AudioSource audioSource;
 
 		private Animator myAnimator;
 
@@ -39,6 +40,7 @@ namespace PlayerScripts
             rb = GetComponent<Rigidbody2D>();
             meleeAt = GetComponent<MeleeAttack>();
             godManager = GetComponent<GodManager>();
+            audioSource = GetComponent<AudioSource>();
             godManager.init();
             runnyOath = GameObject.Find("RunnyGod").GetComponentInChildren<Oath>();
 			myAnimator = GetComponentInChildren<Animator>();
@@ -91,6 +93,7 @@ namespace PlayerScripts
             //interact with totems to enable their boons 
             if (Input.GetButtonDown("Interact"))
             {
+                audioSource.Play();
                 switch (interactTag)
                 {
                     case "FieryTotem":

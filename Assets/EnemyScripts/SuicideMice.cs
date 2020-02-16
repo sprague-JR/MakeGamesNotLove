@@ -14,11 +14,13 @@ namespace EnemyScripts
         private Vector2 end;
         private float speed;
         private float frac;
+        private AudioSource audioSource;
 
         private void Start()
         {
             attack = GetComponent<AoeAttack>();
             rb = GetComponent<Rigidbody2D>();
+            audioSource = GetComponent<AudioSource>();
             start = rb.position;
             end = new Vector2(Random.Range(-4f, 4f) + transform.position.x, Random.Range(-4f, 4f) + transform.position.y);
             speed = 0.7f;
@@ -61,6 +63,7 @@ namespace EnemyScripts
             {
                 attack.attack(rb.position, Vector2.zero);
                 detonating = true;
+                audioSource.Play();
             }
         }
     }
