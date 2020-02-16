@@ -60,7 +60,7 @@ namespace PlayerScripts
 			myAnimator.SetFloat(y, Input.GetAxisRaw("Vertical"));
 			myAnimator.SetFloat(x, Input.GetAxisRaw("Horizontal"));
 
-            if (currentAim != Vector2.zero)
+            if (moveInput != Vector2.zero)
             {
                 direction = currentAim.normalized;
                 hasMoved = true;
