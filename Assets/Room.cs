@@ -11,7 +11,6 @@ public class Room
 	public Vector2Int dimensions;
 
 	public Vector2Int offset;
-	public GameObject rendered;
 
 
 	public Room(int x, int y, int grid_size = 25, int min_length = 15, int max_length = 21)
@@ -23,11 +22,6 @@ public class Room
 
 		offset = new Vector2Int(Random.Range(1, grid_size - dimensions.x - 1),Random.Range(1,grid_size - dimensions.y - 1));
 
-
-		rendered = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-		rendered.transform.position = new Vector3((gridLoc.x * grid_size) + offset.x + (dimensions.x / 2), 0, (gridLoc.y * grid_size) + offset.y + (dimensions.y / 2));
-		rendered.transform.localScale = new Vector3(dimensions.x, 2, dimensions.y);
 
 	}
 }
@@ -180,11 +174,6 @@ public class DungeonNode
 
 	}
 
-	public void Destroy()
-	{
-		GameObject.Destroy(room.rendered);
-
-	}
 
 
 

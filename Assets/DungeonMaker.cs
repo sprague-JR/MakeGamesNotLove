@@ -231,7 +231,6 @@ public class DungeonMaker : MonoBehaviour
             {
                 if (grid[ix, iy] != null && !keep.Contains(grid[ix, iy]) && !rooms.Contains(grid[ix,iy]))
                 {
-                    grid[ix, iy].Destroy();
                     grid[ix, iy] = null;
                 }else if(!rooms.Contains(grid[ix,iy]) && grid[ix,iy] != null)
 				{
@@ -525,11 +524,11 @@ public class DungeonMaker : MonoBehaviour
 
 				for (int i = 0; i < Random.Range(3, 10); i++)
 				{
-					GameObject temp = GameObject.Instantiate(enemies[Mathf.RoundToInt(Random.Range(0, enemies.Length - 1))]);
+					GameObject temp = GameObject.Instantiate(enemies[Mathf.FloorToInt(Random.Range(0, enemies.Length - 0.99f))]);
 
 					temp.transform.position = new Vector3(
-							Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 1, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 1),
-							Random.Range((room.room.gridLoc.y * 25) + room.room.offset.y + 1, (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y - 1),
+							Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 2, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 2),
+							Random.Range((room.room.gridLoc.y * 25) + room.room.offset.y + 2, (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y - 2),
 					0);
 				}
 				

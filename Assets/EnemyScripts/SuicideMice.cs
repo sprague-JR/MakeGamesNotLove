@@ -20,7 +20,7 @@ namespace EnemyScripts
             attack = GetComponent<AoeAttack>();
             rb = GetComponent<Rigidbody2D>();
             start = rb.position;
-            end = new Vector2(Random.Range(-4f, 4f), Random.Range(-4f, 4f));
+            end = new Vector2(Random.Range(-4f, 4f) + transform.position.x, Random.Range(-4f, 4f) + transform.position.y);
             speed = 0.7f;
         }
 
