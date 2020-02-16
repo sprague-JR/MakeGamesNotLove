@@ -407,7 +407,7 @@ public class DungeonMaker : MonoBehaviour
 		}
 
 		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y + 1);
-
+		Debug.Log(start_boon.transform.position);
 
 
 
@@ -437,7 +437,7 @@ public class DungeonMaker : MonoBehaviour
 		{
 			if(leaf.connected.Count == 1 && leaf != start && leaf != end)
 			{
-				if(Random.value < 0.8)
+				if(Random.value < 0.6f)
 				{
 					Debug.Log("Splish Splash I was taking a bath");
 					mg.setWaterTile(new Vector2(leaf.corridoors[0].a.x, leaf.corridoors[0].a.y));
@@ -489,7 +489,7 @@ public class DungeonMaker : MonoBehaviour
 					}
 					GameObject leaf_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
 
-					leaf_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
+					leaf_boon.transform.position = new Vector3(boon_x, (room.room.gridLoc.y * 25) + room.room.offset.y + room.room.dimensions.y);
 				}
 				else
 				{
