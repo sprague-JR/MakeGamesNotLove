@@ -31,7 +31,7 @@ namespace PlayerScripts.oaths
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Water")
+            if (collision.gameObject.CompareTag("Water"))
             {
                 Debug.Log("Splish Splosh oh my gosh");
                 broke = true;

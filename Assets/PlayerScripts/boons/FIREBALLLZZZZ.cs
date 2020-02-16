@@ -27,12 +27,12 @@ namespace PlayerScripts.boons
             Destroy(gameObject);
         }
 
-        public void attack(Vector2 position, Vector2 direction)
+        public void attack(Vector2 position, Vector2 direction, float speed = 30)
         {
-            rb.MovePosition(position);
-            rb.velocity = direction.normalized;
+            rb.velocity = direction.normalized * speed;
             start = position;
             isFlying = true;
+            Debug.Log(speed);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -9,7 +9,7 @@ namespace EnemyScripts
 
         public override uint dmg()
         {
-            return 10;
+            return 1;
         }
 
         public override void takeDmg(uint dmg)

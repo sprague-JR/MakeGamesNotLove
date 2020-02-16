@@ -1,10 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using WeaponScripts;
 
 namespace PlayerScripts.boons
 {
     class MurderousBoon: BallzMaker
     {
+        private void Start()
+        {
+            speed = 10f;
+        }
+
         override public float cooldown()
         {
             return 0.2f;
@@ -17,7 +23,7 @@ namespace PlayerScripts.boons
 
         override public uint damage()
         {
-            return 3;
+            return 1;
         }
     }
 }
