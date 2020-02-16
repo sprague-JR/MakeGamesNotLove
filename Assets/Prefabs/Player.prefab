@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626fe655424f7ea40baca413dd2c6200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDone: 0
 --- !u!1 &173721905
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +892,10 @@ MonoBehaviour:
   controller: {fileID: 7614364687909266067}
   isDead: 0
   nextLevel: 0
+  fullHeart: {fileID: 2420148968845585449, guid: 127503665e1c89d4789689e2768efe1c,
+    type: 3}
+  emptyHeart: {fileID: 7210520141581112035, guid: 127503665e1c89d4789689e2768efe1c,
+    type: 3}
 --- !u!114 &777577359
 MonoBehaviour:
   m_ObjectHideFlags: 0
