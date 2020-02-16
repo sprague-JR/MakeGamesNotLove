@@ -24,12 +24,12 @@ namespace EnemyScripts
             speed = 0.7f;
         }
 
-        public override uint dmg()
+        public override int dmg()
         {
             return 1;
         }
 
-        public override void takeDmg(uint dmg)
+        public override void takeDmg(int dmg)
         {
             Destroy(gameObject);
         }

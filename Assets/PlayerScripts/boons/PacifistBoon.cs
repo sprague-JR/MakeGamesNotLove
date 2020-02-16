@@ -15,7 +15,7 @@ namespace PlayerScripts.boons
             return 1f;
         }
 
-        override public uint damage()
+        override public int damage()
         {
             return 10;
         }

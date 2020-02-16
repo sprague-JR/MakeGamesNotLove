@@ -3,11 +3,11 @@ using WeaponScripts;
 
 namespace PlayerScripts.boons
 {
-    class RunnyBoon: MeleeAttack
+    class RunnyBoon: AoeAttack
     {
         override public float cooldown()
         {
-            return 0.7f;
+            return 0.6f;
         }
 
         override public float range()
@@ -15,9 +15,9 @@ namespace PlayerScripts.boons
             return 2f;
         }
 
-        override public uint damage()
+        override public int damage()
         {
-            return 10;
+            return 4;
         }
     }
 }

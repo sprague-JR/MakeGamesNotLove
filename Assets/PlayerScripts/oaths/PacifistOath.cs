@@ -4,7 +4,7 @@ namespace PlayerScripts.oaths
 {
     public class PacifistOath : MonoBehaviour, Oath
     {
-        private bool attacked;
+        private bool attacked = true;
 
         public void playerAttack(bool a)
         {

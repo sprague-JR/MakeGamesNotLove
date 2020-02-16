@@ -23,7 +23,7 @@ namespace WeaponScripts
             return 2f;
         }
 
-        override public uint damage()
+        override public int damage()
         {
             return 5;
         }
