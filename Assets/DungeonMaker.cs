@@ -73,7 +73,7 @@ public class DungeonMaker : MonoBehaviour
 		mg.Wallify(x * 25,y * 25);
 
 		populate_start();
-		//populate_end();
+		populate_end();
 
 		populate_leaf_room();
 
