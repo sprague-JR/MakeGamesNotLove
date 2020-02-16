@@ -84,10 +84,12 @@ namespace PlayerScripts
                         break;
                     case "PacifistTotem":
                         Debug.Log("pacifist");
+                        godManager.notPacifist = false;
                         godManager.enableGods(1);
                         break;
                     case "RunnyTotem":
                         Debug.Log("runny");
+                        hasMoved = false;
                         godManager.enableGods(2);
                         break;
                     case "MurderTotem":

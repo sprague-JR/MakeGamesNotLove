@@ -8,7 +8,7 @@ namespace PlayerScripts
     public class GodManager: MonoBehaviour
     {
         private God[] gods;
-        private bool notPacifist;
+        public bool notPacifist;
 
         public void init()
         {
