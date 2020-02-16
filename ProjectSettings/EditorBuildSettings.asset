@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mainmenu.unity
     guid: 7867fdcf7e5885d49a003acff9ce7c18
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WaterTestScene.unity
     guid: acf73cc3b2f9ae144b7e4ab435fb9681
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: 7eb872709c4bcd241933b89eaee46b7d
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 1a43a5810f3e58a4381c6d07b44adb41

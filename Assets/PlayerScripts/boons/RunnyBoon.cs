@@ -12,7 +12,7 @@ namespace PlayerScripts.boons
 
         override public float range()
         {
-            return 2f;
+            return 3.5f;
         }
 
         override public int damage()

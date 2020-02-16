@@ -24,6 +24,7 @@ namespace PlayerScripts
         private GodManager godManager;
         private Oath runnyOath;
         private bool hasMoved;
+        private AudioSource audioSource;
 
 		private Animator myAnimator;
 
@@ -39,6 +40,7 @@ namespace PlayerScripts
             rb = GetComponent<Rigidbody2D>();
             meleeAt = GetComponent<MeleeAttack>();
             godManager = GetComponent<GodManager>();
+            audioSource = GetComponent<AudioSource>();
             godManager.init();
             runnyOath = GameObject.Find("RunnyGod").GetComponentInChildren<Oath>();
 			myAnimator = GetComponentInChildren<Animator>();
@@ -58,9 +60,8 @@ namespace PlayerScripts
 			myAnimator.SetFloat(y, Input.GetAxisRaw("Vertical"));
 			myAnimator.SetFloat(x, Input.GetAxisRaw("Horizontal"));
 
-            if (currentAim != Vector2.zero)
+            if (moveInput != Vector2.zero)
             {
-                direction = currentAim.normalized;
                 hasMoved = true;
             }
             else
@@ -71,20 +72,29 @@ namespace PlayerScripts
                 }
             }
 
+            if (currentAim != Vector2.zero)
+            {
+                direction = currentAim.normalized;
+            }
+
             if (Mathf.Abs(Input.GetAxisRaw("Fire1")) == 1f)
             {
+                Debug.Log("Murderous Attack");
                 godManager.attack(3, transform.position, direction);
             }
             else if(Mathf.Abs(Input.GetAxisRaw("Fire2")) == 1f)
             {
+                Debug.Log("Pacifist");
                 godManager.attack(1, transform.position, direction);
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Fire3")) == 1f)
             {
+                Debug.Log("runny");
                 godManager.attack(2, transform.position, direction);
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Fire4")) == 1f)
             {
+                Debug.Log("fireballz");
                 godManager.attack(0, transform.position, direction);
             }
 
@@ -96,20 +106,24 @@ namespace PlayerScripts
                     case "FieryTotem":
                         Debug.Log("FieryToteeeeem");
                         godManager.enableGods(0);
+                        audioSource.Play();
                         break;
                     case "PacifistTotem":
                         Debug.Log("pacifist");
                         godManager.notPacifist = false;
                         godManager.enableGods(1);
+                        audioSource.Play();
                         break;
                     case "RunnyTotem":
                         Debug.Log("runny");
                         hasMoved = false;
                         godManager.enableGods(2);
+                        audioSource.Play();
                         break;
                     case "MurderTotem":
                         Debug.Log("murder");
                         godManager.enableGods(3);
+                        audioSource.Play();
                         break;
                     default:
                         break;

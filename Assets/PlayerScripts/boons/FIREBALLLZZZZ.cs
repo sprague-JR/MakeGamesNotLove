@@ -8,6 +8,7 @@ namespace PlayerScripts.boons
     {
         private Rigidbody2D rb;
         private Vector2 start;
+        private AudioSource audioSource;
         private bool isFlying;
         public float range;
         public int dmg;
@@ -15,6 +16,7 @@ namespace PlayerScripts.boons
         public void init()
         {
             rb = GetComponent<Rigidbody2D>();
+            audioSource = GetComponent<AudioSource>();
         }
 		private void Awake()
 		{
@@ -36,6 +38,7 @@ namespace PlayerScripts.boons
             rb.velocity = direction.normalized * speed;
             start = position;
             isFlying = true;
+            audioSource.PlayOneShot(audioSource.clip);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
