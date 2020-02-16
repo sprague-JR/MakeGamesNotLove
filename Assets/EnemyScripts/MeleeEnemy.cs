@@ -14,7 +14,7 @@ namespace EnemyScripts
         private void Start()
         {
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            if (Random.Range(0.0f, 10.0f) >= 9.0f)
+            if (Random.Range(0.0f, 100.0f) <= 1.0f)
             {
                 spriteRenderer.sprite = coolGuy;
             }
