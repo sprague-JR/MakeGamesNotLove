@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDone: 0
+  ps: {fileID: 0}
 --- !u!199 &4967742645249029740
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5171,7 +5172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be910f9100740c887a22e33fea0bf5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 6315704627370286984, guid: bde6ac241a4c3188e88ad3343e3a9dfc, type: 3}
+  ball: {fileID: 7937805832603901628, guid: 5fce33ecc44a74341b27ed3a264892a9, type: 3}
   speed: 9
 --- !u!1 &1680402741
 GameObject:
@@ -5219,6 +5220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDone: 0
+  ps: {fileID: 0}
 --- !u!199 &8919442790587113512
 ParticleSystemRenderer:
   serializedVersion: 6
