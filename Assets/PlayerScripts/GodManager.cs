@@ -21,6 +21,7 @@ namespace PlayerScripts
             {
                 gods[i] = godSelector.transform.GetChild(i).GetComponent<God>();
             }
+           
         }
 
         public void enableGods(int index)
