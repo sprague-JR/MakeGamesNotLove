@@ -246,7 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkableTile: {fileID: 11400000, guid: 3d139441d6489e74fb86d2c50dbbf02e, type: 2}
-  nonwalkableTile: {fileID: 0}
+  nonwalkableTile: {fileID: 11400000, guid: d5a9e77e8910cfc4cbddd104b1d4d5e9, type: 2}
+  waterTile: {fileID: 11400000, guid: 9c5f8d2a48ac8634ea94a568c6857191, type: 2}
 --- !u!1 &639655292
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +642,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -379474777
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

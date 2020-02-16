@@ -79,6 +79,7 @@ public class DungeonMaker : MonoBehaviour
 
 
 		populate_non_leaf_room();
+		populate_non_critical_corridoor();
 
 	}
 
@@ -382,6 +383,8 @@ public class DungeonMaker : MonoBehaviour
 		GameObject start_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
 
 		//find suitable location for boon
+		Debug.Log(start.connected.Count);
+		Debug.Log(start.corridoors.Count);
 
 		Corridoor c = start.corridoors[0];
 		//start is a leaf node so there is only one corridoor
@@ -431,7 +434,18 @@ public class DungeonMaker : MonoBehaviour
 	public void populate_non_critical_corridoor()
 	{
 
+		foreach(DungeonNode leaf in rooms)
+		{
+			if(leaf.connected.Count == 1 && leaf != start && leaf != end)
+			{
+				if(Random.value < 0.8)
+				{
+					Debug.Log("Splish Splash I was taking a bath");
+					mg.setWaterTile(new Vector2(leaf.corridoors[0].a.x, leaf.corridoors[0].a.y));
 
+				}
+			}
+		}
 
 
 
@@ -454,8 +468,6 @@ public class DungeonMaker : MonoBehaviour
 				if(Random.value < 0.3f)
 				{
 					//spawn boon
-
-					Debug.Log(room.corridoors.Count);
 					Corridoor c = room.corridoors[0];
 					//start is a leaf node so there is only one corridoor
 

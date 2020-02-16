@@ -14,7 +14,7 @@ public class Room
 	public GameObject rendered;
 
 
-	public Room(int x, int y, int grid_size = 25, int min_length = 10, int max_length = 21)
+	public Room(int x, int y, int grid_size = 25, int min_length = 15, int max_length = 21)
 	{ 
 
 		gridLoc = new Vector2Int(x, y);
@@ -167,10 +167,14 @@ public class DungeonNode
 		{
 			connected.Add(node);
 
-			if (corridoor == null)
+			if (corridoor is null)
 			{
 				corridoors.Add(new Corridoor(room, node.room));
 				node.AddConnection(this, corridoors[corridoors.Count - 1]);
+			}
+			else
+			{
+				corridoors.Add(corridoor);
 			}
 		}
 
