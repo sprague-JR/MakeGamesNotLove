@@ -231,7 +231,7 @@ MonoBehaviour:
   - {fileID: 2838486641555983220, guid: 92ee65984211a0ee68af11ca3ffe22d4, type: 3}
   - {fileID: 7807271924579462636, guid: 4597bb040a8e6dc408d2b08d6c3ea16e, type: 3}
   player: {fileID: 7614364687909266064, guid: b6c562fff52cc454ca6d3bc20a736761, type: 3}
-  exit: {fileID: 0}
+  exit: {fileID: 3186928810546644293, guid: a9e567f0dcbab3a4c8265d0231c4e8d5, type: 3}
   mg: {fileID: 0}
 --- !u!114 &344013226
 MonoBehaviour:

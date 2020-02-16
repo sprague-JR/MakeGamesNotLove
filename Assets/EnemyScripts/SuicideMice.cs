@@ -45,12 +45,13 @@ namespace EnemyScripts
             {
                 start = rb.position;
                 end = new Vector2(Random.Range(-4f, 4f), Random.Range(-4f, 4f));
+				end = new Vector2(end.x + transform.position.x,end.y + transform.position.y);
                 frac = 0;
             }
             else
             {
                 frac += speed * Time.deltaTime;
-                rb.MovePosition(Vector2.Lerp(start, end, frac));
+                rb.MovePosition(Vector2.Lerp(transform.position, end, speed * Time.deltaTime));
             }
         }
 
