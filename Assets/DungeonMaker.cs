@@ -407,7 +407,7 @@ public class DungeonMaker : MonoBehaviour
 			boon_x = Random.Range((start.room.gridLoc.x * 25) + start.room.offset.x + 2, (start.room.gridLoc.x * 25) + start.room.offset.x + start.room.dimensions.x - 2);
 		}
 
-		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
+		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y + 1);
 
 
 
@@ -488,9 +488,9 @@ public class DungeonMaker : MonoBehaviour
 					{
 						boon_x = Random.Range((room.room.gridLoc.x * 25) + room.room.offset.x + 2, (room.room.gridLoc.x * 25) + room.room.offset.x + room.room.dimensions.x - 2);
 					}
-					GameObject start_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
+					GameObject leaf_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
 
-					start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
+					leaf_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 25) + start.room.offset.y + start.room.dimensions.y);
 				}
 				else
 				{

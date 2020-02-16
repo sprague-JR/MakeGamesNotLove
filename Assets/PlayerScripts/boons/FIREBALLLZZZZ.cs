@@ -16,8 +16,12 @@ namespace PlayerScripts.boons
         {
             rb = GetComponent<Rigidbody2D>();
         }
-
-        private void FixedUpdate()
+		private void Awake()
+		{
+			ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
+			ps.GetComponent<Renderer>().sortingLayerName = "Player";
+		}
+		private void FixedUpdate()
         {
             if (!isFlying) return;
             if (!((rb.position - start).magnitude >= range)) return;
