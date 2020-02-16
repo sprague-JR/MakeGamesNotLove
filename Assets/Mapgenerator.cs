@@ -8,14 +8,17 @@ public class Mapgenerator : MonoBehaviour
     // Start is called before the first frame update
     Tilemap walkable;
     Tilemap nonwalkable;
+    Tilemap water;
     public TileBase walkableTile;
     public TileBase nonwalkableTile;
+    public TileBase waterTile;
  
 
     void Awake()
     {
         walkable = GameObject.Find("Walkable").GetComponent<Tilemap>();
         nonwalkable = GameObject.Find("Nonwalkable").GetComponent<Tilemap>();
+        water = GameObject.Find("Water").GetComponent<Tilemap>();
 
 		//createmap(new Vector2(0, 10), new Vector2(8, 0));
 		//createmap(new Vector2(15, 20), new Vector2(30, 0));
@@ -75,7 +78,17 @@ public class Mapgenerator : MonoBehaviour
 
 	}
 
+    public void setWaterTile(Vector2 position)
+    {
+        int x = Mathf.RoundToInt(position.x);
+        int y = Mathf.RoundToInt(position.y);
 
+        if (nonwalkable.HasTile(new Vector3Int(x, y, 0)))
+            return;
+
+        water.SetTile(new Vector3Int(x,y,0), waterTile);
+        nonwalkable.SetTile(new Vector3Int(x, y, 0), null);
+    }
 
 	public void coridor(Vector2 pos1, Vector2 pos2)
     {
