@@ -10,6 +10,9 @@ public class DungeonMaker : MonoBehaviour
 	List<DungeonNode> rooms;
     public int x, y;
 
+	public GameObject[] totems;
+	public GameObject[] enemies;
+
 	DungeonNode start;
 	DungeonNode end;
 
@@ -31,14 +34,14 @@ public class DungeonMaker : MonoBehaviour
 
 
 			Vector2 tl = new Vector2(
-				(dn.room.gridLoc.x * 20) + dn.room.offset.x,
-				(dn.room.gridLoc.y * 20) + dn.room.offset.y + dn.room.dimensions.y
+				(dn.room.gridLoc.x * 40) + dn.room.offset.x,
+				(dn.room.gridLoc.y * 40) + dn.room.offset.y + dn.room.dimensions.y
 				);
 
 
 			Vector2 br = new Vector2(
-				(dn.room.gridLoc.x * 20) + dn.room.offset.x + dn.room.dimensions.x,
-				(dn.room.gridLoc.y * 20) + dn.room.offset.y
+				(dn.room.gridLoc.x * 40) + dn.room.offset.x + dn.room.dimensions.x,
+				(dn.room.gridLoc.y * 40) + dn.room.offset.y
 				);
 
 			mg.createmap(tl, br);
@@ -65,18 +68,16 @@ public class DungeonMaker : MonoBehaviour
 
 		}
 
-		mg.Wallify(x * 20,y * 20);
+		mg.Wallify(x * 40,y * 40);
+
+		populate_start();
+		populate_end();
+
+		populate_leaf_room();
 
 
-		GameObject player_instance = Instantiate(player);
+		populate_non_leaf_room();
 
-		player_instance.transform.position = new Vector3(
-			start.room.gridLoc.x * 20 + start.room.offset.x + (start.room.dimensions.x/2),
-			start.room.gridLoc.y * 20 + start.room.offset.y + (start.room.dimensions.y/2),
-			0);
-
-		transform.parent = player_instance.transform;
-		transform.localPosition = new Vector3(0, 0, -10);
 	}
 
     void makeRooms()
@@ -349,6 +350,97 @@ public class DungeonMaker : MonoBehaviour
 			return -1;
 		else
 			return dist[end];
+	}
+
+
+
+
+
+
+
+
+
+
+
+	public void populate_start()
+	{
+
+		GameObject player_instance = Instantiate(player);
+
+		player_instance.transform.position = new Vector3(
+			start.room.gridLoc.x * 40 + start.room.offset.x + (start.room.dimensions.x / 2),
+			start.room.gridLoc.y * 40 + start.room.offset.y + (start.room.dimensions.y / 2),
+			0);
+
+		transform.parent = player_instance.transform;
+		transform.localPosition = new Vector3(0, 0, -10);
+
+
+
+		GameObject start_boon = Instantiate(totems[Mathf.RoundToInt(Random.Range(0, totems.Length))]);
+
+		//find suitable location for boon
+
+		Corridoor c = start.corridoors[0];
+		//start is a leaf node so there is only one corridoor
+
+		Vector2Int cor_loc = c.a.y == (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y ? c.a: c.b;
+
+
+
+		int boon_x = 0;
+		if (cor_loc.y == (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y)
+		{
+			boon_x = Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 40) + start.room.offset.x) >
+			Mathf.Abs(cor_loc.x - (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x) ?
+			Random.Range((start.room.gridLoc.x * 40) + start.room.offset.x + 2, cor_loc.x - 2) :
+			Random.Range(cor_loc.x + 2, (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x - 2);
+
+		}
+		else
+		{
+			boon_x = Random.Range((start.room.gridLoc.x * 40) + start.room.offset.x + 2, (start.room.gridLoc.x * 40) + start.room.offset.x + start.room.dimensions.x - 2);
+		}
+
+		start_boon.transform.position = new Vector3(boon_x, (start.room.gridLoc.y * 40) + start.room.offset.y + start.room.dimensions.y);
+
+
+
+
+
+	}
+
+
+	public void populate_end()
+	{
+
+	}
+
+
+
+
+
+	public void populate_non_critical_corridoor()
+	{
+
+
+
+	}
+
+
+
+	public void populate_leaf_room()
+	{
+
+
+	}
+
+
+
+	public void populate_non_leaf_room()
+	{
+
+
 	}
 }
 
