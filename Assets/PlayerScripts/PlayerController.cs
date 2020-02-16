@@ -93,26 +93,29 @@ namespace PlayerScripts
             //interact with totems to enable their boons 
             if (Input.GetButtonDown("Interact"))
             {
-                audioSource.Play();
                 switch (interactTag)
                 {
                     case "FieryTotem":
                         Debug.Log("FieryToteeeeem");
                         godManager.enableGods(0);
+                        audioSource.Play();
                         break;
                     case "PacifistTotem":
                         Debug.Log("pacifist");
                         godManager.notPacifist = false;
                         godManager.enableGods(1);
+                        audioSource.Play();
                         break;
                     case "RunnyTotem":
                         Debug.Log("runny");
                         hasMoved = false;
                         godManager.enableGods(2);
+                        audioSource.Play();
                         break;
                     case "MurderTotem":
                         Debug.Log("murder");
                         godManager.enableGods(3);
+                        audioSource.Play();
                         break;
                     default:
                         break;
