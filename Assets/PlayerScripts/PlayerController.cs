@@ -68,7 +68,9 @@ namespace PlayerScripts
             {
                 if (hasMoved && !runnyOath.hasBeenBroken())
                 {
-                    runnyOath.forceBreak(true);
+                    Debug.Log("stop running");
+                    //runnyOath.forceBreak(true);
+                    godManager.disableGod(2);
                 }
             }
 

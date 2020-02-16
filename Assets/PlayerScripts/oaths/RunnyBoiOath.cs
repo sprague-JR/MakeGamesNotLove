@@ -23,6 +23,7 @@ namespace PlayerScripts.oaths
 
         public void forceBreak(bool b)
         {
+            //if(b == false) totems[index].color = Color.grey;
             broke = b;
         }
     }

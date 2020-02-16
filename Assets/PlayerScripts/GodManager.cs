@@ -51,15 +51,15 @@ namespace PlayerScripts
                 canAttack = false;
                 gods[index].boon().attack(position, direction);
                 Invoke("resetCooldown", gods[index].boon().cooldown());
-            }
 
             if (notPacifist) return;
-            foreach (var god in gods)
-            {
-                if (!(god is PacifistGod g)) continue;
-                ((PacifistOath) g.oath()).playerAttack(true);
-                notPacifist = true;
-                break;
+                foreach (var god in gods)
+                {
+                    if (!(god is PacifistGod g)) continue;
+                     disableGod(1);// ((PacifistOath) g.oath()).playerAttack(true);
+                    notPacifist = true;
+                    break;
+                }
             }
         }
 
